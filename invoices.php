@@ -10,8 +10,15 @@ if(isset($_GET['page'])) {
     $page = 1;
 }
 
-$num_per_page = 11;
-$start_from = ($page - 1) * 07;
+if(isset($_POST['updateStatus'])) {
+    $invoiceId = mysqli_real_escape_string($con, $_POST['id']);
+    $status = mysqli_real_escape_string($con, $_POST['updateStatus']);
+    $updateStatusQuery = "UPDATE invoices SET status='$status' WHERE id='$invoiceId'";
+    mysqli_query($con, $updateStatusQuery);
+}
+
+$num_per_page = 9;
+$start_from = ($page - 1) * 12;
 
 $qquery = "SELECT invoices.*,customers.name FROM invoices LEFT JOIN customers ON invoices.cus_id=customers.cus_id limit $start_from,$num_per_page";
 $query_runn = mysqli_query($con, $qquery);
@@ -110,21 +117,6 @@ $query_runn = mysqli_query($con, $qquery);
                         </li>
                     </ul>
                 </div>
-
-                <!-- <div class="list-group mt-3 text-center text-lg-start">
-                    <span class="list-group-item disabled d-none d-lg-block">
-                        <small>ACTIONS</small></span>
-
-                    <a href="#" class="list-group-item"><i class="fas fa-home"></i>
-                        <span class="d-none d-lg-inline">New Users</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-edit"></i>
-                        <span class="d-none d-lg-inline">Update data</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-calendar-alt"></i>
-                        <span class="d-none d-lg-inline">New Events</span>
-                    </a>
-                </div> -->
             </nav>
 
             <main class="col-10 text-white bg-dark">
@@ -226,30 +218,6 @@ $query_runn = mysqli_query($con, $qquery);
                         </div>
                     </div>
 
-                    <!-- <div class="row mt-4 flex-column flex-lg-row"> -->
-                    <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col" id="list">
 
                         <h2 class="h6 text-white-50">DATA</h2>
@@ -281,8 +249,9 @@ $query_runn = mysqli_query($con, $qquery);
                                                 <th>Date</th>
                                                 <th>Invoice No</th>
                                                 <th>Customer Name</th>
-                                                <th>Total Amount</th>
-                                                
+                                                <th>Total Amount</th>   
+                                                <th>Discount</th>
+                                                <th>Paid/Un</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -293,7 +262,9 @@ $query_runn = mysqli_query($con, $qquery);
 
                                             if (mysqli_num_rows($query_runn) > 0) {
                                                 foreach ($query_runn as $invoices) {
-                                                    //eho
+                                                //eho
+                                                if($invoices['status'] === 'UNPAID') $disabled = 'UNPAID';
+                                                if($invoices['status'] === 'PAID') $disabled = 'PAID';
                                             ?>
                                                     <tr>
                                                         <td><?= $invoices['id']; ?></td>
@@ -301,13 +272,29 @@ $query_runn = mysqli_query($con, $qquery);
                                                         <td><?= $invoices['invoice_no'];?></td>
                                                         <td><?= $invoices['name'];?></td>
                                                         <td><?= $invoices['amount'];?></td>
+                                                        <td><?= $invoices['disc'];?></td>
+                                                        <td><?= $invoices['status'];?></td>
+
 
                                                     <td>
-                                                            <a href="cust-edit.php?id=<?= $invoices['id']; ?>" class="btn btn-primary btn-sm">paid</a>
-                                                            <a href="cust-detail.php?id=<?= $invoices['id']; ?>" class="btn btn-primary btn-sm">unpaid</a>
-                                                            <form action="code_invo.php" method="POST" class="d-inline">
-                                                                <button type="submit" name="delete_invoice" value="<?= $invoices['id'];?>" class="btn btn-danger btn-sm">Delete</button>
-                                                            </form>
+                                                        <!-- copy this one for all tabs nor -->
+                                                        <form method="POST" class="d-inline">
+                                                            <input type="hidden" name="id" value="<?= $invoices['id'] ?>" readonly />
+                                                            <input type="hidden" name="updateStatus" value="PAID" readonly />
+                                                            <input type="submit" value="PAID" <?php if($disabled === "PAID") echo " disabled "; ?> class="btn btn-primary btn-sm" />
+                                                        </form>
+                                                        <form method="POST" class="d-inline">
+                                                            <input type="hidden" name="id" value="<?= $invoices['id'] ?>" readonly />
+                                                            <input type="hidden" name="updateStatus" value="UNPAID" readonly />
+                                                            <input type="submit" value="UNPAID" <?php if($disabled === "UNPAID") echo " disabled "; ?> class="btn btn-success btn-sm" />
+                                                        </form>
+                                                        <form action="code_invo.php" method="POST" class="d-inline">
+                                                            <button type="submit" name="delete_invoice" value="<?= $invoices['id'];?>" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                        <a href="invo_data_print.php?id=<?= $invoices['id']?>" class="btn btn-warning btn-sm">Print</a>
+                                                        <!-- <form action="invo_data_print.php" method="POST" class="d-inline">
+                                                            <button type="submit" name="print_inv" value="<?= $invoices['id'];?>" class="btn btn-warning btn-sm">Print</button>
+                                                        </form> -->
                                                         </td>
                                                     </tr>
                                             <?php
@@ -320,22 +307,134 @@ $query_runn = mysqli_query($con, $qquery);
                                     </table>
 
                                   </div>
-                                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                  <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Date</th>
+                                                <th>Invoice No</th>
+                                                <th>Customer Name</th>
+                                                <th>Total Amount</th>   
+                                                <th>Discount</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // $query = "SELECT * FROM customers";
+                                            // $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_runn) > 0) {
+                                                foreach ($query_runn as $invoices) {
+                                                //eho
+                                                if($invoices['status'] === 'PAID') {
+                                            ?>
+                                                    <tr>
+                                                        <td><?= $invoices['id']; ?></td>
+                                                        <td><?= $invoices['date']; ?></td>
+                                                        <td><?= $invoices['invoice_no'];?></td>
+                                                        <td><?= $invoices['name'];?></td>
+                                                        <td><?= $invoices['amount'];?></td>
+                                                        <td><?= $invoices['disc'];?></td>
+
+
+                                                    <td>
+                                                    <form method="POST" class="d-inline">
+                                                                <input type="hidden" name="id" value="<?= $invoices['id'] ?>" readonly />
+                                                                <input type="hidden" name="updateStatus" value="UNPAID" readonly />
+                                                                <input type="submit" value="UNPAID" class="btn btn-primary btn-sm" />
+                                                            </form>
+                                                            <form action="code_invo.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_invoice" value="<?= $invoices['id'];?>" class="btn btn-danger btn-sm">Delete</button>
+                                                            </form>
+                                                            <form action="code_invo.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="print_inv" value="<?= $invoices['id'];?>)" class="btn btn-warning btn-sm">Print</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                            
+                                            <?php
+                                                }
+                                                }
+                                            } else {
+                                                echo "<h5> No Record Found </h5>";
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                  </div>
+                                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                  <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Date</th>
+                                                <th>Invoice No</th>
+                                                <th>Customer Name</th>
+                                                <th>Total Amount</th>   
+                                                <th>Discount</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // $query = "SELECT * FROM customers";
+                                            // $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_runn) > 0) {
+                                                foreach ($query_runn as $invoices) {
+                                                //eho
+                                                if($invoices['status'] === 'UNPAID') {
+                                            ?>
+                                                    <tr>
+                                                        <td><?= $invoices['id']; ?></td>
+                                                        <td><?= $invoices['date']; ?></td>
+                                                        <td><?= $invoices['invoice_no'];?></td>
+                                                        <td><?= $invoices['name'];?></td>
+                                                        <td><?= $invoices['amount'];?></td>
+                                                        <td><?= $invoices['disc'];?></td>
+
+
+                                                    <td>
+                                                    <form method="POST" class="d-inline">
+                                                                <input type="hidden" name="id" value="<?= $invoices['id'] ?>" readonly />
+                                                                <input type="hidden" name="updateStatus" value="PAID" readonly />
+                                                                <input type="submit" value="PAID" class="btn btn-primary btn-sm" />
+                                                            </form>
+                                                            <form action="code_invo.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_invoice" value="<?= $invoices['id'];?>" class="btn btn-danger btn-sm">Delete</button>
+                                                            </form>
+                                                            <form action="invo_data_print.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="print_inv" value="<?= $invoices['id'];?>" class="btn btn-warning btn-sm">Print</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                            
+                                            <?php
+                                                }
+                                                }
+                                            } else {
+                                                echo "<h5> No Record Found </h5>";
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                  </div>
                                 </div>
                                   
                                   </div>
 
                                   <div class="contiainer text-end p-5">
                                         <?php
-                                        $pr_query = "SELECT * FROM products";
+                                        $pr_query = "SELECT * FROM invoices";
                                         $pr_result = mysqli_query($con, $pr_query);
                                         $totalrecord = mysqli_num_rows($pr_result);
                                         $totalpages = ceil($totalrecord / $num_per_page);
                                         // echo $totalpages;
 
                                         for ($i = 1; $i <= $totalpages; $i++) {
-                                            echo "<a href='products.php?page=" . $i . "' class='btn pages'>$i</a>";
+                                            echo "<a href='invoices.php?page=" . $i . "' class='btn pages'>$i</a>";
                                         }
                                         ?>
                                     </div>

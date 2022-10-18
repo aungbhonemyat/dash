@@ -1,6 +1,6 @@
 <?php
 require 'dbcon.php';
-
+//save
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +75,7 @@ require 'dbcon.php';
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
+                            <a href="products.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
                                 <span class="d-none d-lg-inline">Products</span>
                             </a>
                         </li>
@@ -139,7 +139,7 @@ require 'dbcon.php';
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                         <?php
-                                        $dash_product_query = "SELECT * FROM products";
+                                        $dash_product_query = "SELECT * FROM invoices";
                                         $dash_product_query_run = mysqli_query($con, $dash_product_query);
 
                                         if ($product_total = mysqli_num_rows($dash_product_query_run)) {
@@ -200,7 +200,7 @@ require 'dbcon.php';
                                     <?php include('message.php'); ?>
 
 
-                                     <div class="row">
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <div class="card text-black">
                                                 <div class="card-header">
@@ -209,10 +209,10 @@ require 'dbcon.php';
                                                     </h4>
                                                 </div>
                                                 <div class="card-body ">
-                                                    <form action="code_invo.php" method="POST">
+                                                    <form action="code_invo.php" method="POST" id="create-invoice-form">
                                                         <div class="mb-3">
                                                             <label>Customer Name</label>
-                                                            <select name="cust_id" class="form-control">
+                                                            <select name="cus_id" id="cus_id" class="form-control" required>
                                                                 <option value="1">Choose Customer</option>
                                                                 <?php
                                                                 require "dbcon.php";
@@ -220,7 +220,7 @@ require 'dbcon.php';
                                                                 $result = mysqli_query($con, "SELECT * FROM customers");
                                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                                 ?>
-                                                                    <option value="<?php echo $row['cust_id']; ?>" required>
+                                                                    <option value="<?php echo $row['cus_id']; ?>">
                                                                         <?php echo $row['name']; ?>
                                                                     </option>
 
@@ -237,38 +237,40 @@ require 'dbcon.php';
                                                             <input type="date" name="datetime" class="form-control">
                                                         </div>
                                                         <table class="table" id="table_field">
-                                                                <tr>
-                                                                    <!-- <th>No</th> -->
-                                                                    <th>Item</th>
-                                                                    <th>Qty</th>
-                                                                    <th>Rate</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                                <tr>
+                                                            <tr>
+                                                                <!-- <th>No</th> -->
+                                                                <th>Item</th>
+                                                                <th>Qty</th>
+                                                                <th>Rate</th>
+                                                                <th>Amount</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                            <tr>
 
-                                                                 <td>
-                                                                     <select name="product_id" id="invoice" class="form-control">
-                                                                            <option value="" selected="selected">Choose Product</option>
-                                                                            <?php
+                                                                <td>
+                                                                    <select name="product_id" id="invoice" class="form-control">
+                                                                        <option value="" selected="selected">Choose Product</option>
+                                                                        <?php
 
-                                                                            $sql = "SELECT item_id,item_name,rate,date FROM products";
-                                                                            $result = mysqli_query($con, $sql);
-                                                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                                            ?>
-                                                                                <option value="<?php echo $row['item_id']; ?>">
-                                                                                    <?php echo $row['item_name']; ?>
-                                                                                </option>
-                                                                            <?php } ?>
-                                                                        </select></td>
-                                                                    <td><input type="number" name="qty[]" require=""></td>
-                                                                    <td><input type="number" readonly name="rate[]" require=""><?php echo $row['rate']; ?></td>
-                                                                    <td><input type="text" name="amount[]" readonly require=""></td>
-                                                                    <td>
-                                                                        <input class="btn btn-warning" type="button" name="add" id="add" value="Add">
-                                                                    </td>
-                                                                </tr>
+                                                                        $sql = "SELECT item_id,item_name,rate,date FROM products";
+                                                                        $result = mysqli_query($con, $sql);
+                                                                        while ($row = mysqli_fetch_assoc($result)) {
+                                                                        ?>
+                                                                            <option value="<?php echo $row['item_id']; ?>">
+                                                                                <?php echo $row['item_name']; ?>
+                                                                            </option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input type="number" name="qty[]" require=""></td>
+                                                                <td><input type="number" readonly name="rate[]" require=""><?php echo $row['rate']; ?></td>
+                                                                <td><input type="text" name="amount[]" readonly require=""></td>
+                                                                <td>
+                                                                    <input class="btn btn-warning" type="button" name="add" id="add" value="Add">
+                                                                </td>
+                                                            </tr>
                                                         </table>
+                                                        <input type="hidden" name="products" id="items" />
                                                         <div class="row col-lg-4 text-end">
                                                             <div class="mb-3">
                                                                 <label>Discount</label>
@@ -284,10 +286,16 @@ require 'dbcon.php';
                                                                 <input type="text" name="total" id="total" readonly class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3">
-                                                            <input type="submit" name="save_invoice" class="btn btn-primary" value="Create">
+                                                        <div class="row col-lg-12">
+                                                            <div class="col-lg-3">
+                                                                <button type="submit" name="save_invoice" class="btn btn-primary">Create Invoice</button>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <a href="invo_data_print.php" class="btn btn-secondary">Print</a>
+                                                            </div>
                                                         </div>
-                                                    </form>
+                                                        </div>
+                                                    </form>   
                                                 </div>
                                             </div>
                                         </div>
@@ -311,31 +319,31 @@ require 'dbcon.php';
     const amountInput = document.querySelector('input[name="amount[]"]');
 
     qtyInput.addEventListener("change", (e) => {
-        if(!!rateInput.value) amountInput.value = rateInput.value * qtyInput.value;
+        if (!!rateInput.value) amountInput.value = rateInput.value * qtyInput.value;
     });
 
     rateInput.addEventListener("change", (e) => {
-        if(!!qtyInput.value) amountInput.value = rateInput.value * qtyInput.value;
+        if (!!qtyInput.value) amountInput.value = rateInput.value * qtyInput.value;
     });
 
     const products = [];
 
     <?php
     $products_query = "SELECT * FROM products";
-    $products_relt = mysqli_query($con,$products_query);
-    while($row = mysqli_fetch_assoc($products_relt)) {
-    echo "products.push({ id: " . $row['item_id'] . ", rate: " . $row['rate'] . " });";
+    $products_relt = mysqli_query($con, $products_query);
+    while ($row = mysqli_fetch_assoc($products_relt)) {
+        echo "products.push({ id: " . $row['item_id'] . ", rate: " . $row['rate'] . " });";
     }
     ?>
 
     document.querySelector('select[name="product_id"]').addEventListener('change', (e) => {
-        rateInput.value = products.find( p => (p.id == e.target.value)).rate;
+        rateInput.value = products.find(p => (p.id == e.target.value)).rate;
     });
 
 
 
     document.querySelector("#add").addEventListener("click", () => {
-        if( !!qtyInput.value && !!rateInput.value && !!amountInput.value ){
+        if (!!qtyInput.value && !!rateInput.value && !!amountInput.value) {
             // create new row
             let productSelection = document.querySelector('select[name="product_id"]');
             const newRow = document.createElement("tr");
@@ -344,8 +352,10 @@ require 'dbcon.php';
             const rateCol = document.createElement("td");
             const amountCol = document.createElement("td");
 
+            let selectedProduct = productSelection.options[productSelection.selectedIndex];
+
             // set value into columns
-            itemCol.innerHTML = productSelection.options[productSelection.selectedIndex].text;
+            itemCol.innerHTML = selectedProduct.text;
             qtyCol.innerHTML = qtyInput.value;
             rateCol.innerHTML = rateInput.value;
             amountCol.innerHTML = amountInput.value;
@@ -358,35 +368,39 @@ require 'dbcon.php';
             newRow.appendChild(rateCol);
             newRow.appendChild(amountCol);
 
+            // add item to item list
+            const items = document.querySelector("#items");
+            if(!items.value) {
+                items.value = JSON.stringify([parseInt(selectedProduct.value)])
+            } else {
+                const itemsArray = JSON.parse(items.value);
+                itemsArray.push(parseInt(selectedProduct.value));
+                items.value = JSON.stringify(itemsArray);
+            }
+            //save lite
             // add row to table
             document.querySelector("#table_field").appendChild(newRow);
 
-            // calculate amounts of all rows
-            const amounts = [...document.querySelectorAll("[name='product-amount[]']")];
-
+            const subtotal = document.querySelector("#subtotal");
+            const total = document.querySelector("#total");
             
- 
-            const subtotal = amounts.length > 1 ? amounts.reduce((a,b) => ( parseInt(a.innerHTML) + parseInt(b.innerHTML))) : amounts[0].innerHTML;
-            
-            // save & reload gogo
+            const tempSubTotal = !!subtotal.value ? parseInt(subtotal.value) + parseInt(amountInput.value) : amountInput.value;
 
-            console.log(subtotal); //save reload pls :D
+            subtotal.value = tempSubTotal;
 
-            // check discount
-            const discount = document.querySelector("#disc").value;
+            //d narr lay mharr nay tr, ae hr ko 1 chat line por shar pee lode kyi
+            total.value = (!!document.querySelector("#disc").value) ? 
+                parseInt(subtotal.value) - parseInt(document.querySelector("#disc").value) : 
+                tempSubTotal;
 
-            const total = !!discount ? subtotal - discount : subtotal;
-
-            // add totals and subtotals
-            document.querySelector("#subtotal").value = subtotal;
-            document.querySelector("#total").value = total;
+            // save reload, ya p lol, s and r
         }
     });
 
     document.querySelector("#disc").addEventListener("change", (e) => {
         const subtotal = document.querySelector("#subtotal");
         const total = document.querySelector("#total");
-        if(!!e.target.value && !!subtotal.value) total.value = subtotal.value - e.target.value;
+        if (!!e.target.value && !!subtotal.value) total.value = subtotal.value - e.target.value;
     })
 </script>
 

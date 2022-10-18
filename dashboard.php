@@ -159,11 +159,11 @@ require 'dbcon.php';
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                             <?php
-                                            $dash_product_query = "SELECT * FROM products";
-                                            $dash_product_query_run = mysqli_query($con, $dash_product_query);
+                                            $dash_query = "SELECT * FROM invoices";
+                                            $dash_run = mysqli_query($con, $dash_query);
 
-                                            if ($product_total = mysqli_num_rows($dash_product_query_run)) {
-                                                echo '<h2 class="mb-0 text-center">' . $product_total . '</h2>';
+                                            if ($total = mysqli_num_rows($dash_run)) {
+                                                echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
                                             } else {
                                                 echo '<h3 class="mb-0"> NO data </h3>';
                                             }

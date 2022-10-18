@@ -154,7 +154,7 @@ require 'dbcon.php';
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                             <?php
-                                            $dash_product_query = "SELECT * FROM products";
+                                            $dash_product_query = "SELECT * FROM invoices";
                                             $dash_product_query_run = mysqli_query($con, $dash_product_query);
 
                                             if ($product_total = mysqli_num_rows($dash_product_query_run)) {
@@ -234,16 +234,9 @@ require 'dbcon.php';
                                 <div class="text-end">
                                     <h3 class="float-end text-black"> Edit Customers</h3>
                                 </div>
-                                <!-- <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-sort-amount-up"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-filter"></i> </button> -->
 
                                             <div class="container mt-5">
-                                <!-- <?php include('message.php');?> -->
+                                <?php include('message.php');?>
         
 
                                     <div class="row">
@@ -295,14 +288,14 @@ require 'dbcon.php';
                                                                 <input type="text" name="city" value="<?= $customer['city'] ?>" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="mb-3">
+                                                        <!-- <div class="mb-3">
                                                             <label>Receivablies</label>
                                                             <input type="text" name="receive" value="<?= $customer['receive'] ?>" class="form-control">
                                                         </div>
                                                         <div class="col-lg-6 mb-3">
                                                             <label>Discount</label>
                                                             <input type="text" name="disc" value="<?= $customer['disc'] ?>" class="form-control">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="col-lg-3">
                                                             <button type="submit" name="update" class="btn btn-primary">Update Customer</button>
                                                         </div>

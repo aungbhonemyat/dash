@@ -40,8 +40,6 @@ require 'dbcon.php';
                         <li>
                             <a href="customer.php" class="list-group-item p-5 action active" ><i class="fas fa-users"></i>
                                 <span class="d-none d-lg-inline">Customers</span>
-                                <!-- <span class="d-none d-lg-inline badge bg-danger
-                        rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
@@ -155,11 +153,11 @@ require 'dbcon.php';
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                             <?php
-                                            $dash_product_query = "SELECT * FROM products";
-                                            $dash_product_query_run = mysqli_query($con, $dash_product_query);
+                                            $dash_query = "SELECT * FROM invoices";
+                                            $dash_query_run = mysqli_query($con, $dash_query);
 
-                                            if ($product_total = mysqli_num_rows($dash_product_query_run)) {
-                                                echo '<h2 class="mb-0 text-center">' . $product_total . '</h2>';
+                                            if ($total = mysqli_num_rows($dash_query_run)) {
+                                                echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
                                             } else {
                                                 echo '<h3 class="mb-0"> NO data </h3>';
                                             }
@@ -202,31 +200,6 @@ require 'dbcon.php';
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="row mt-4 flex-column flex-lg-row"> -->
-                    <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col">
 
                         <h2 class="h6 text-white-50">DATA</h2>
@@ -268,7 +241,7 @@ require 'dbcon.php';
                                                             <input type="hidden" name="customer_id" value="<?= $customer['cus_id']; ?>">
                                                         <div class="row">
                                                             <div class=" col-lg-6 col-12 mb-3">
-                                                                <label>Customer Name</label>
+                                                                <label for="name">Customer Name</label>
                                                                 <p class="form-control">
                                                                     <?= $customer['name'] ?>
                                                                 </p>
@@ -297,7 +270,7 @@ require 'dbcon.php';
                                                                     <?= $customer['city'] ?>
                                                                 </p>
                                                             </div>
-                                                            <div class="col-lg-6 col-12 mb-3">
+                                                            <!-- <div class="col-lg-6 col-12 mb-3">
                                                                 <label>Receivablies</label>
                                                                 <p class="form-control">
                                                                     <?= $customer['receive'] ?>
@@ -308,7 +281,7 @@ require 'dbcon.php';
                                                                 <p class="form-control">
                                                                     <?= $customer['disc'] ?>
                                                                 </p>
-                                                            </div>
+                                                            </div> -->
                                                             </div>
 
                                                     <?php

@@ -8,8 +8,8 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 
-$num_per_page = 11;
-$start_from = ($page - 1) * 07;
+$num_per_page = 10;
+$start_from = ($page - 1) * 10;
 
 $qquery = "SELECT * FROM products limit $start_from,$num_per_page";
 $query_runn = mysqli_query($con, $qquery);
@@ -176,7 +176,7 @@ $query_runn = mysqli_query($con, $qquery);
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                     <?php
-                                    $dash_product_query = "SELECT * FROM products";
+                                    $dash_product_query = "SELECT * FROM invoices";
                                     $dash_product_query_run = mysqli_query($con, $dash_product_query);
 
                                     if ($product_total = mysqli_num_rows($dash_product_query_run)) {
@@ -225,30 +225,6 @@ $query_runn = mysqli_query($con, $qquery);
                         </div>
                     </div>
 
-                    <!-- <div class="row mt-4 flex-column flex-lg-row"> -->
-                    <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col" id="list">
 
                         <h2 class="h6 text-white-50">DATA</h2>

@@ -154,7 +154,7 @@ require 'dbcon.php';
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                             <?php
-                                            $dash_product_query = "SELECT * FROM products";
+                                            $dash_product_query = "SELECT * FROM invoices";
                                             $dash_product_query_run = mysqli_query($con, $dash_product_query);
 
                                             if ($product_total = mysqli_num_rows($dash_product_query_run)) {

@@ -8,10 +8,11 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 
-$num_per_page = 11;
-$start_from = ($page - 1) * 07;
+$num_per_page = 10;
+$start_from = ($page - 1) * 10;
 
-$qquery = "SELECT * FROM customers limit $start_from,$num_per_page";
+$qquery = "SELECT customers.cus_id,customers.name,customers.phone, SUM(invoices.amount) as receive, SUM(invoices.disc) as disc FROM customers, invoices WHERE customers.cus_id = invoices.cus_id GROUP BY customers.cus_id LIMIT $start_from,$num_per_page";
+
 $query_runn = mysqli_query($con, $qquery);
 
 ?>
@@ -176,7 +177,7 @@ $query_runn = mysqli_query($con, $qquery);
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                             <?php
-                                            $dash_product_query = "SELECT * FROM products";
+                                            $dash_product_query = "SELECT * FROM invoices";
                                             $dash_product_query_run = mysqli_query($con, $dash_product_query);
 
                                             if ($product_total = mysqli_num_rows($dash_product_query_run)) {
@@ -281,22 +282,19 @@ $query_runn = mysqli_query($con, $qquery);
 
                                         if (mysqli_num_rows($query_runn) > 0) {
                                             foreach ($query_runn as $customer) {
-                                                //eho
-                                                if($query_relt['status'] === 'UNPAID') $btn_color = 'btn-danger';
-                                                if($query_relt['status'] === 'PAID') $btn_color = 'btn-success';
+                                                
                                         ?>
                                                 <tr>
                                                     <td><?= $customer['cus_id']; ?></td>
                                                     <td><?= $customer['name']; ?></td>
-                                                    <!-- <td><?= $customer['receive']; ?></td> -->
-                                                    <!-- <td><?= $customer['disc']; ?></td> -->
+                                                    <td><?= $customer['receive']; ?></td>
+                                                    <td><?= $customer['disc']; ?></td>
                                                     <td><?= $customer['phone']; ?></td>
                                                     <td>
                                                         <a href="cust-edit.php?id=<?= $customer['cus_id']; ?>" class="btn btn-primary btn-sm">Edit</a>
                                                         <a href="cust-detail.php?id=<?= $customer['cus_id']; ?>" class="btn btn-primary btn-sm">Details</a>
                                                         <form action="code.php" method="POST" class="d-inline">
                                                             <button type="submit" name="delete_customer" value="<?= $customer['cus_id']; ?>" class="btn btn-danger btn-sm">Delete</button>
-                                                            <!-- <button type="submit" name="delete_customer" value="<?= $customer['cus_id']; ?>" class="btn <?= $btn_color; ?> btn-sm">Delete</button> -->
                                                         </form>
                                                     </td>
                                                 </tr>

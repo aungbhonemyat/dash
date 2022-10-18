@@ -83,22 +83,7 @@ require 'dbcon.php';
                         </li>
                     </ul>
                 </div>
-
-                <!-- <div class="list-group mt-3 text-center text-lg-start">
-                    <span class="list-group-item disabled d-none d-lg-block">
-                        <small>ACTIONS</small></span>
-
-                    <a href="#" class="list-group-item"><i class="fas fa-home"></i>
-                        <span class="d-none d-lg-inline">New Users</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-edit"></i>
-                        <span class="d-none d-lg-inline">Update data</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-calendar-alt"></i>
-                        <span class="d-none d-lg-inline">New Events</span>
-                    </a>
-                </div> -->
-            </nav>
+          </nav>
 
             <main class="col-10 text-white bg-dark">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -154,7 +139,7 @@ require 'dbcon.php';
                                 <div class="card-body">
                                 <h3 class="card-title h2">
                                             <?php
-                                            $dash_product_query = "SELECT * FROM products";
+                                            $dash_product_query = "SELECT * FROM invoices";
                                             $dash_product_query_run = mysqli_query($con, $dash_product_query);
 
                                             if ($product_total = mysqli_num_rows($dash_product_query_run)) {
@@ -201,51 +186,16 @@ require 'dbcon.php';
                             </div>
                         </div>
                     </div>
+                    <div class="col mt-5 p-5">
 
-                    <!-- <div class="row mt-4 flex-column flex-lg-row"> -->
-                    <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <div class="col">
-
-                        <h2 class="h6 text-white-50">DATA</h2>
+                        <!-- <h2 class="h6 text-white-50">DATA</h2> -->
                         <div class="card mb-3" style="height:100%">
                             <div class="card-body">
                                 <div class="text-end">
                                     <h3 class="float-end text-black"> Add Customers</h3>
                                 </div>
-                                <!-- <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-sort-amount-up"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-filter"></i> </button> -->
-
                                         <div class="container mt-5">
                                         <?php include('message.php'); ?>
-
-
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="card text-black">
@@ -269,31 +219,20 @@ require 'dbcon.php';
                                                                 <input type="text" name="phone" class="form-control">
                                                             </div>
                                                             <div class="row">
+                                                            <div class="col-lg-6 mb-3">
+                                                                    <label>City</label>
+                                                                    <input type="text" name="city" class="form-control">
+                                                                </div>
                                                                 <div class="col-lg-6 mb-3">
                                                                     <label>Township</label>
                                                                     <input type="text" name="town" class="form-control">
                                                                 </div>
-                                                                <div class="col-lg-6 mb-3">
-                                                                    <label>City</label>
-                                                                    <input type="text" name="city" class="form-control">
-                                                                </div>
                                                             </div>
-                                                            <!-- <div class="mb-3">
-                                                                <label>Receivablies</label>
-                                                                <input type="text" name="receive" class="form-control">
-                                                            </div>
-                                                            <div class="col-lg-6 mb-3">
-                                                                <label>Discount</label>
-                                                                <input type="text" name="disc" class="form-control">
-                                                            </div> -->
                                                             <div class="col-lg-3">
                                                                 <button type="submit" name="save_customer" class="btn btn-primary">Save Customer</button>
                                                             </div>
                                                         </form>
                                                     </div>
-
-
-
                                                 </div>
                                             </div>
                                         </div>
