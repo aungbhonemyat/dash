@@ -28,11 +28,11 @@
 
         if ($result) {
             $_SESSION['message'] = "Customer Created Successfully";
-            header("Location: invoices/index.php");
+            header("Location: /");
             exit(0);
         } else {
             $_SESSION['message'] = "Customer Not Created";
-            header("Location: invoices/index.php");
+            header("Location: /");
             exit(0);
         }
     }
@@ -44,11 +44,11 @@
 
         if ($query_run) {
             $_SESSION['message'] = "Invoices Deleted Successfully";
-            header("Location: invoices/index.php");
+            header("Location: /");
             exit(0);
         } else {
             $_SESSION['message'] = "Invoices Not Deleted";
-            header("Location: invoices/index.php");
+            header("Location: /");
             exit(0);
         }
     }

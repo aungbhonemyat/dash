@@ -11,11 +11,11 @@ if (isset($_POST['delete_customer'])) {
 
     if ($query_run) {
         $_SESSION['message'] = "Customer Deleted Successfully";
-        header("Location: customer.php");
+        header("Location: /");
         exit(0);
     } else {
         $_SESSION['message'] = "Customer Not Deleted";
-        header("Location: customer.php");
+        header("Location: /");
         exit(0);
     }
 }
@@ -36,11 +36,11 @@ if (isset($_POST['update'])) {
 
     if ($query_run) {
         $_SESSION['message'] = "Customer Updated Successfully";
-        header("Location: customer.php");
+        header("Location: /");
         exit(0);
     } else {
         $_SESSION['message'] = "Customer Not Updated";
-        header("Location: customer.php");
+        header("Location: /");
         exit(0);
     }
 }
@@ -62,11 +62,11 @@ if (isset($_POST['save_customer']))
     $query_run = mysqli_query($con, $query);
     if ($query_run) {
         $_SESSION['message'] = "Customer Created Successfully";
-        header("Location: customer.php");
+        header("Location: /");
         exit(0);
     } else {
         $_SESSION['message'] = "Customer Not Created";
-        header("Location: customer.php");
+        header("Location: /");
         exit(0);
     }
 }

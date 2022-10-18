@@ -12,11 +12,11 @@ if (isset($_POST['delete_product'])) {
 
     if ($query_run) {
         $_SESSION['message'] = "Product Deleted Successfully";
-        header("Location: products.php");
+        header("Location: /");
         exit(0);
     } else {
         $_SESSION['message'] = "Product Not Deleted";
-        header("Location: products.php");
+        header("Location: /");
         exit(0);
     }
 }
@@ -33,11 +33,11 @@ if (isset($_POST['save_product']))
 
     if ($query_run) {
         $_SESSION['message'] = "Products Created Successfully";
-        header("Location: products.php");
+        header("Location: /");
         exit(0);
     } else {
         $_SESSION['message'] = "Products Not Created";
-        header("Location: products.php");
+        header("Location: /");
         exit(0);
     }
 }
