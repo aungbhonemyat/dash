@@ -369,10 +369,16 @@ require '../dbcon.php';
             // add item to item list
             const items = document.querySelector("#items");
             if (!items.value) {
-                items.value = JSON.stringify([parseInt(selectedProduct.value)])
+                items.value = JSON.stringify([{
+                    id: parseInt(selectedProduct.value),
+                    qty: parseInt(qtyInput.value)
+                }])
             } else {
                 const itemsArray = JSON.parse(items.value);
-                itemsArray.push(parseInt(selectedProduct.value));
+                itemsArray.push({
+                    id: parseInt(selectedProduct.value),
+                    qty: parseInt(qtyInput.value)
+                });
                 items.value = JSON.stringify(itemsArray);
             }
             //save lite
