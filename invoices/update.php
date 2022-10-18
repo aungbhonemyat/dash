@@ -11,12 +11,16 @@
         $name = mysqli_real_escape_string($con, $_POST['cus_id']);
         $amount = mysqli_real_escape_string($con, $_POST['total']);
         $disc = mysqli_real_escape_string($con, $_POST['disc']);
+
         $products = mysqli_real_escape_string($con, $_POST['products']);
+        $products = json_decode($products, true);
 
+        foreach ($products as $product) {
+            $orderquery = "INSERT INTO orders(invoice_no,item_id) VALUES ('$invo_no','$product')";
+            $insert = mysqli_query($con, $orderquery);
+        }
 
-        $sql = "INSERT INTO invoices(invoice_no,date,cus_id,amount,disc,status,products) VALUES ('$invo_no','$datetime','$name',$amount,$disc,'UNPAID','$products')";
-
-        // echo $sql;
+        $sql = "INSERT INTO invoices(invoice_no,date,cus_id,amount,disc,status) VALUES ('$invo_no','$datetime','$name',$amount,$disc,'UNPAID')";
 
         $result = mysqli_query($con, $sql);
 
