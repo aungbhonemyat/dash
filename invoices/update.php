@@ -19,6 +19,7 @@
             $productid = $product['id'];
             $productqty = $product['qty'];
             $orderquery = "INSERT INTO orders(invoice_no,item_id,qty) VALUES ('$invo_no',$productid,$productqty)";
+            echo "<script>console.log($orderquery);</script>";
             $insert = mysqli_query($con, $orderquery);
         }
 
