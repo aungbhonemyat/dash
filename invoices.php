@@ -277,7 +277,7 @@ $query_runn = mysqli_query($con, $qquery);
 
 
                                                     <td>
-                                                        <!-- copy this one for all tabs nor -->
+                                                        <!-- copy this one for all tabs nor -->`
                                                         <form method="POST" class="d-inline">
                                                             <input type="hidden" name="id" value="<?= $invoices['id'] ?>" readonly />
                                                             <input type="hidden" name="updateStatus" value="PAID" readonly />
