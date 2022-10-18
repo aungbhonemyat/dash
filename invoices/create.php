@@ -286,7 +286,7 @@ require '../dbcon.php';
                                                         </div>
                                                         <div class="row col-lg-12">
                                                             <div class="col-lg-3">
-                                                                <button type="submit" name="save_invoice" class="btn btn-primary">Create Invoice</button>
+                                                                <button type="submit" name="save_invoice" value="save_invoice" class="btn btn-primary">Create Invoice</button>
                                                             </div>
                                                             <div class="col-lg-3">
                                                                 <a href="invo_data_print.php" class="btn btn-secondary">Print</a>

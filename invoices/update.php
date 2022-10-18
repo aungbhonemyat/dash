@@ -12,14 +12,12 @@
         $amount = mysqli_real_escape_string($con, $_POST['total']);
         $disc = mysqli_real_escape_string($con, $_POST['disc']);
 
-        $products = mysqli_real_escape_string($con, $_POST['products']);
-        $products = json_decode($products, true);
+        $products = json_decode($_POST['products'], true);
 
         foreach ($products as $product) {
             $productid = $product['id'];
             $productqty = $product['qty'];
             $orderquery = "INSERT INTO `orders`(`invoice_no`,`item_id`,`qty`) VALUES ('$invo_no',$productid,$productqty)";
-            eco $orderquery;
             $insert = mysqli_query($con, $orderquery);
         }
 
@@ -27,17 +25,15 @@
 
         $result = mysqli_query($con, $sql);
 
-        echo $result;
-
-        // if ($result) {
-        //     $_SESSION['message'] = "Customer Created Successfully";
-        //     header("Location: index.php");
-        //     exit(0);
-        // } else {
-        //     $_SESSION['message'] = "Customer Not Created";
-        //     header("Location: index.php");
-        //     exit(0);
-        // }
+        if ($result) {
+            $_SESSION['message'] = "Customer Created Successfully";
+            header("Location: index.php");
+            exit(0);
+        } else {
+            $_SESSION['message'] = "Customer Not Created";
+            header("Location: index.php");
+            exit(0);
+        }
     }
     if (isset($_POST['delete_invoice'])) {
         $inv_id = mysqli_real_escape_string($con, $_POST['delete_invoice']);
