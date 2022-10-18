@@ -18,26 +18,26 @@
         foreach ($products as $product) {
             $productid = $product['id'];
             $productqty = $product['qty'];
-            $orderquery = "INSERT INTO orders(invoice_no,item_id,qty) VALUES ('$invo_no',$productid,$productqty)";
-            echo "<script>console.log($orderquery);</script>";
+            $orderquery = "INSERT INTO `orders`(`invoice_no`,`item_id`,`qty`) VALUES ('$invo_no',$productid,$productqty)";
+            eco $orderquery;
             $insert = mysqli_query($con, $orderquery);
         }
 
-        $sql = "INSERT INTO invoices(invoice_no,date,cus_id,amount,disc,status) VALUES ('$invo_no','$datetime','$name',$amount,$disc,'UNPAID')";
+        $sql = "INSERT INTO `invoices`(`invoice_no`,`date`,`cus_id`,`amount`,`disc`,`status`) VALUES ('$invo_no','$datetime','$name',$amount,$disc,'UNPAID')";
 
         $result = mysqli_query($con, $sql);
 
         echo $result;
 
-        if ($result) {
-            $_SESSION['message'] = "Customer Created Successfully";
-            header("Location: index.php");
-            exit(0);
-        } else {
-            $_SESSION['message'] = "Customer Not Created";
-            header("Location: index.php");
-            exit(0);
-        }
+        // if ($result) {
+        //     $_SESSION['message'] = "Customer Created Successfully";
+        //     header("Location: index.php");
+        //     exit(0);
+        // } else {
+        //     $_SESSION['message'] = "Customer Not Created";
+        //     header("Location: index.php");
+        //     exit(0);
+        // }
     }
     if (isset($_POST['delete_invoice'])) {
         $inv_id = mysqli_real_escape_string($con, $_POST['delete_invoice']);
