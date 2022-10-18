@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require '../dbcon.php';
 
 if (isset($_GET['id'])) {
     $invoiceId = mysqli_real_escape_string($con, $_GET['id']);
