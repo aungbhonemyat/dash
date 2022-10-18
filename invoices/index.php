@@ -348,9 +348,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     <form action="update.php" method="POST" class="d-inline">
                                                                         <button type="submit" name="delete_invoice" value="<?= $invoices['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
                                                                     </form>
-                                                                    <form action="update.php" method="POST" class="d-inline">
-                                                                        <button type="submit" name="print_inv" value="<?= $invoices['id']; ?>)" class="btn btn-warning btn-sm">Print</button>
-                                                                    </form>
+                                                                    <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
                                                                 </td>
                                                             </tr>
 
@@ -405,9 +403,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     <form action="update.php" method="POST" class="d-inline">
                                                                         <button type="submit" name="delete_invoice" value="<?= $invoices['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
                                                                     </form>
-                                                                    <form action="print.php" method="POST" class="d-inline">
-                                                                        <button type="submit" name="print_inv" value="<?= $invoices['id']; ?>" class="btn btn-warning btn-sm">Print</button>
-                                                                    </form>
+                                                                    <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
                                                                 </td>
                                                             </tr>
 
