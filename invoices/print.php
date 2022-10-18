@@ -31,6 +31,8 @@ if (isset($_GET['id'])) {
         <?php
         if (mysqli_num_rows($relt) > 0) {
             foreach ($relt as $data) {
+
+                $invoice_no = $data['invoice_no'];
         ?>
 
                 <section class="container-fluid" id="invoice">
@@ -86,7 +88,7 @@ if (isset($_GET['id'])) {
                             </div>
                             <?php
                             //paste
-                            $itemsQuery = "SELECT products.* FROM invoices,products WHERE invoices.id=$invoiceId AND JSON_CONTAINS(invoices.products, products.item_id, '$')";
+                            $itemsQuery = "SELECT * FROM orders,products WHERE orders.invoice_no='$invoice_no' AND orders.item_id = products.item_id";
                             $itemsRelt = mysqli_query($con, $itemsQuery);
                             if (mysqli_num_rows($itemsRelt) > 0) {
                                 foreach ($itemsRelt as $item) {
@@ -101,10 +103,10 @@ if (isset($_GET['id'])) {
                                                     <?= $item['rate'] ?>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    qty
+                                                    <?= $item['qty'] ?>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    amount
+                                                    <?php echo $item['qty'] * $item['rate'] ?>
                                                 </div>
                                             </div>
                                         </div>
