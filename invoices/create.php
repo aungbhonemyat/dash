@@ -209,7 +209,7 @@ require '../dbcon.php';
                                                     </h4>
                                                 </div>
                                                 <div class="card-body ">
-                                                    <form action="code_invo.php" method="POST" id="create-invoice-form">
+                                                    <form action="update.php" method="POST" id="create-invoice-form">
                                                         <div class="mb-3">
                                                             <label>Customer Name</label>
                                                             <select name="cus_id" id="cus_id" class="form-control" required>
