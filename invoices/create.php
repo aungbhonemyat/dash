@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require '../dbcon.php';
 //save
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ require 'dbcon.php';
             <nav class="col-2 bg-light">
 
                 <h1 class="h4  text-center">
-                    <a class="navbar-brand h1" href="dashboard.php">
+                    <a class="navbar-brand h1" href="../dashboard.php">
                         <img src="img/glass-brand.png" width="80px" alt=""></a>
                     </a>
                 </h1>
@@ -35,12 +35,12 @@ require 'dbcon.php';
                         <small>CONTROLS</small> </span>
                     <ul class="nav-link nav">
                         <li>
-                            <a href="dashboard.php" class="list-group-item p-5"> <i class="fas fa-home"></i>
+                            <a href="../dashboard.php" class="list-group-item p-5"> <i class="fas fa-home"></i>
                                 <span class="d-none d-lg-inline">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="customer.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                            <a href="../customer/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
                                 <span class="d-none d-lg-inline">Customers</span>
                                 <!-- <span class="d-none d-lg-inline badge bg-danger
                         rounded-pill float-end">20</span> -->
@@ -53,7 +53,7 @@ require 'dbcon.php';
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
-                                    <a href="invoices.php" class="list-group-item">
+                                    <a href="index.php" class="list-group-item">
                                         Main
                                     </a>
                                 </div>
@@ -75,7 +75,7 @@ require 'dbcon.php';
                             </a>
                         </li>
                         <li>
-                            <a href="products.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
+                            <a href="../products/index.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
                                 <span class="d-none d-lg-inline">Products</span>
                             </a>
                         </li>
@@ -108,7 +108,7 @@ require 'dbcon.php';
                     </div>
                 </nav>
                 <div class="container-fluid mt-4 p-4">
-                    <?php include('message.php'); ?>
+                    <?php require('../message.php'); ?>
 
 
                     <div class="row flex-column flex-lg-row text-dark">
@@ -197,7 +197,7 @@ require 'dbcon.php';
                                 </div>
 
                                 <div class="container mt-5">
-                                    <?php include('message.php'); ?>
+                                    <?php require('../message.php'); ?>
 
 
                                     <div class="row">
@@ -205,7 +205,7 @@ require 'dbcon.php';
                                             <div class="card text-black">
                                                 <div class="card-header">
                                                     <h4>invoice Create
-                                                        <a href="invoices.php" class="btn btn-secondary float-end text-white ">Back</a>
+                                                        <a href="index.php" class="btn btn-secondary float-end text-white ">Back</a>
                                                     </h4>
                                                 </div>
                                                 <div class="card-body ">
@@ -215,7 +215,6 @@ require 'dbcon.php';
                                                             <select name="cus_id" id="cus_id" class="form-control" required>
                                                                 <option value="1">Choose Customer</option>
                                                                 <?php
-                                                                require "dbcon.php";
 
                                                                 $result = mysqli_query($con, "SELECT * FROM customers");
                                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -223,7 +222,6 @@ require 'dbcon.php';
                                                                     <option value="<?php echo $row['cus_id']; ?>">
                                                                         <?php echo $row['name']; ?>
                                                                     </option>
-
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
@@ -294,9 +292,8 @@ require 'dbcon.php';
                                                                 <a href="invo_data_print.php" class="btn btn-secondary">Print</a>
                                                             </div>
                                                         </div>
-                                                        </div>
-                                                    </form>   
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -304,11 +301,12 @@ require 'dbcon.php';
                             </div>
                         </div>
                     </div>
-
-                    <footer class="text-center py-4 text-muted"> &copy; Copyright 2020
-                    </footer>
                 </div>
+
+                <footer class="text-center py-4 text-muted"> &copy; Copyright 2020
+                </footer>
         </div>
+    </div>
 
 
 
@@ -370,7 +368,7 @@ require 'dbcon.php';
 
             // add item to item list
             const items = document.querySelector("#items");
-            if(!items.value) {
+            if (!items.value) {
                 items.value = JSON.stringify([parseInt(selectedProduct.value)])
             } else {
                 const itemsArray = JSON.parse(items.value);
@@ -383,14 +381,14 @@ require 'dbcon.php';
 
             const subtotal = document.querySelector("#subtotal");
             const total = document.querySelector("#total");
-            
+
             const tempSubTotal = !!subtotal.value ? parseInt(subtotal.value) + parseInt(amountInput.value) : amountInput.value;
 
             subtotal.value = tempSubTotal;
 
             //d narr lay mharr nay tr, ae hr ko 1 chat line por shar pee lode kyi
-            total.value = (!!document.querySelector("#disc").value) ? 
-                parseInt(subtotal.value) - parseInt(document.querySelector("#disc").value) : 
+            total.value = (!!document.querySelector("#disc").value) ?
+                parseInt(subtotal.value) - parseInt(document.querySelector("#disc").value) :
                 tempSubTotal;
 
             // save reload, ya p lol, s and r

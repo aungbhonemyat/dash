@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require '../dbcon.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,7 @@ require 'dbcon.php';
     <title>customers</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="js/bootstrap.min.js" defer></script>
 
@@ -22,8 +23,8 @@ require 'dbcon.php';
         <div class="row g-0" style="box-shadow:  0 2px 2px 2px rgb(104, 108, 109);">
             <nav class="col-2 bg-light">
 
-            <h1 class="h4  text-center">
-                    <a class="navbar-brand h1" href="dashboard.php">
+                <h1 class="h4  text-center">
+                    <a class="navbar-brand h1" href="../dashboard.php">
                         <img src="img/glass-brand.png" width="80px" alt=""></a>
                     </a>
                 </h1>
@@ -32,25 +33,25 @@ require 'dbcon.php';
                         <small>CONTROLS</small> </span>
                     <ul class="nav-link nav">
                         <li>
-                            <a href="dashboard.php" class="list-group-item p-5"> <i class="fas fa-home"></i>
+                            <a href="../dashboard.php" class="list-group-item p-5"> <i class="fas fa-home"></i>
                                 <span class="d-none d-lg-inline">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="customer.php" class="list-group-item p-5 action active"> <i class="fas fa-users"></i>
+                            <a href="index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
                                 <span class="d-none d-lg-inline">Customers</span>
                                 <!-- <span class="d-none d-lg-inline badge bg-danger
-                        rounded-pill float-end">20</span> -->
+rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
-                            <a class=" list-group-item px-5 p-5 sidebar-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
+                            <a class=" list-group-item px-5 p-5 sidebar-link action active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
 
                                 <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
-                                    <a href="invoices.php" class="list-group-item">
+                                    <a href="../invoices/index.php" class="list-group-item">
                                         Main
                                     </a>
                                 </div>
@@ -72,7 +73,7 @@ require 'dbcon.php';
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
+                            <a href="../products/index.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
                                 <span class="d-none d-lg-inline">Products</span>
                             </a>
                         </li>
@@ -83,28 +84,13 @@ require 'dbcon.php';
                         </li>
                     </ul>
                 </div>
-
-                <!-- <div class="list-group mt-3 text-center text-lg-start">
-                    <span class="list-group-item disabled d-none d-lg-block">
-                        <small>ACTIONS</small></span>
-
-                    <a href="#" class="list-group-item"><i class="fas fa-home"></i>
-                        <span class="d-none d-lg-inline">New Users</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-edit"></i>
-                        <span class="d-none d-lg-inline">Update data</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-calendar-alt"></i>
-                        <span class="d-none d-lg-inline">New Events</span>
-                    </a>
-                </div> -->
             </nav>
 
             <main class="col-10 text-white bg-dark">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="flex-fill"></div>
                     <div class="navbar-nav">
-                    <li class="nav-item p-2">
+                        <li class="nav-item p-2">
                             <h5 class="text-dark p-1">Admin</h5>
                         </li>
                         <li class="nav-item p-1">
@@ -120,7 +106,7 @@ require 'dbcon.php';
                     </div>
                 </nav>
                 <div class="container-fluid mt-4 p-4">
-                    <?php include('message.php'); ?>
+                    <?php require('../message.php'); ?>
 
 
                     <div class="row flex-column flex-lg-row text-dark">
@@ -129,18 +115,15 @@ require 'dbcon.php';
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h3 class="card-title h2">
-                                    <?php
-                                            $dash_customer_query = "SELECT * FROM customers";
-                                            $dash_customer_query_run = mysqli_query($con, $dash_customer_query);
+                                        <?php
+                                        $dash_customer_query = "SELECT * FROM customers";
+                                        $dash_customer_query_run = mysqli_query($con, $dash_customer_query);
 
-                                            if($customer_total = mysqli_num_rows($dash_customer_query_run))
-                                            {
-                                                echo '<h2 class="mb-0 text-center">'.$customer_total.'</h2>';
-                                            }
-                                            else
-                                            {
-                                                echo '<h3 class="mb-0"> NO data </h3>';
-                                            }
+                                        if ($customer_total = mysqli_num_rows($dash_customer_query_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $customer_total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
                                         ?>
                                     </h3> <span class="text-success">
                                         <i class="fas fa-chart-line"></i>
@@ -152,18 +135,18 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                <h3 class="card-title h2">
-                                            <?php
-                                            $dash_product_query = "SELECT * FROM invoices";
-                                            $dash_product_query_run = mysqli_query($con, $dash_product_query);
+                                    <h3 class="card-title h2">
+                                        <?php
+                                        $dash_query = "SELECT * FROM invoices";
+                                        $dash_query_run = mysqli_query($con, $dash_query);
 
-                                            if ($product_total = mysqli_num_rows($dash_product_query_run)) {
-                                                echo '<h2 class="mb-0 text-center">' . $product_total . '</h2>';
-                                            } else {
-                                                echo '<h3 class="mb-0"> NO data </h3>';
-                                            }
-                                            ?>
-                                        </h3> <span class="text-success">
+                                        if ($total = mysqli_num_rows($dash_query_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-success">
                                         <i class="fas fa-chart-line"></i>
                                         Total invoices
                                     </span>
@@ -201,43 +184,24 @@ require 'dbcon.php';
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="row mt-4 flex-column flex-lg-row"> -->
-                    <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col">
 
                         <h2 class="h6 text-white-50">DATA</h2>
                         <div class="card mb-3" style="height:100%">
                             <div class="card-body">
                                 <div class="text-end">
-                                    <h3 class="float-end text-black"> Edit Customers</h3>
+                                    <h3 class="float-end text-black"> Customer Detail</h3>
                                 </div>
+                                <!-- <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-sort-amount-up"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-filter"></i> </button> -->
 
-                                            <div class="container mt-5">
-                                <?php include('message.php');?>
-        
+                                <div class="container mt-5">
+
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -249,75 +213,75 @@ require 'dbcon.php';
                                                 </div>
                                                 <div class="card-body ">
                                                     <?php
-                                                    if(isset($_GET['id']))
-                                                    {
+                                                    if (isset($_GET['id'])) {
                                                         $customer_id = mysqli_real_escape_string($con, $_GET['id']);
                                                         $query = "SELECT * FROM customers WHERE cus_id='$customer_id'";
                                                         $query_run = mysqli_query($con, $query);
 
-                                                        if(mysqli_num_rows($query_run)>0)
-                                                        {
+                                                        if (mysqli_num_rows($query_run) > 0) {
                                                             $customer = mysqli_fetch_array($query_run);
-                                                            ?>
+                                                    ?>
 
-                                
-
-                                                    <form action="code.php" method="POST">
-
-                                                            <input type="hidden" name="customer_id" value="<?= $customer['cus_id'];?>">
-
-                                                        <div class="mb-3">
-                                                            <label>Customer Name</label>
-                                                            <input type="text" name="name" value="<?= $customer['name'] ?>" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label>Customer Email</label>
-                                                            <input type="text" name="email" value="<?= $customer['email'] ?>" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label>Customer Phone</label>
-                                                            <input type="text" name="phone" value="<?= $customer['phone'] ?>" class="form-control">
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-6 mb-3">
-                                                                <label>Township</label>
-                                                                <input type="text" name="town" value="<?= $customer['town'] ?>" class="form-control">
+                                                            <input type="hidden" name="customer_id" value="<?= $customer['cus_id']; ?>">
+                                                            <div class="row">
+                                                                <div class=" col-lg-6 col-12 mb-3">
+                                                                    <label for="name">Customer Name</label>
+                                                                    <p class="form-control">
+                                                                        <?= $customer['name'] ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-6 col-12 mb-3">
+                                                                    <label>Customer Email</label>
+                                                                    <p class="form-control">
+                                                                        <?= $customer['email'] ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-6 col-12 mb-3">
+                                                                    <label>Customer Phone</label>
+                                                                    <p class="form-control">
+                                                                        <?= $customer['phone'] ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-6 col-12 mb-3">
+                                                                    <label>Township</label>
+                                                                    <p class="form-control">
+                                                                        <?= $customer['town'] ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-6 col-12 mb-3">
+                                                                    <label>City</label>
+                                                                    <p class="form-control">
+                                                                        <?= $customer['city'] ?>
+                                                                    </p>
+                                                                </div>
+                                                                <!-- <div class="col-lg-6 col-12 mb-3">
+                                                                <label>Receivablies</label>
+                                                                <p class="form-control">
+                                                                    <?= $customer['receive'] ?>
+                                                                </p>
                                                             </div>
-                                                            <div class="col-lg-6 mb-3">
-                                                                <label>City</label>
-                                                                <input type="text" name="city" value="<?= $customer['city'] ?>" class="form-control">
+                                                            <div class="col-lg-6 col-12 mb-3">
+                                                                <label>Discount</label>
+                                                                <p class="form-control">
+                                                                    <?= $customer['disc'] ?>
+                                                                </p>
+                                                            </div> -->
                                                             </div>
-                                                        </div>
-                                                        <!-- <div class="mb-3">
-                                                            <label>Receivablies</label>
-                                                            <input type="text" name="receive" value="<?= $customer['receive'] ?>" class="form-control">
-                                                        </div>
-                                                        <div class="col-lg-6 mb-3">
-                                                            <label>Discount</label>
-                                                            <input type="text" name="disc" value="<?= $customer['disc'] ?>" class="form-control">
-                                                        </div> -->
-                                                        <div class="col-lg-3">
-                                                            <button type="submit" name="update" class="btn btn-primary">Update Customer</button>
-                                                        </div>
-                                                    </form>
 
                                                     <?php
-                                                        }
-                                                        else
-                                                        {
+                                                        } else {
                                                             echo "<h4> No Such ID Found</h4>";
                                                         }
                                                     }
 
-                                                    ?>    
+                                                    ?>
                                                 </div>
 
-                    
+
 
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
 
                                 <footer class="text-center py-4 text-muted"> &copy; Copyright 2020
