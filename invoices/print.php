@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
 
                 <section class="container-fluid" id="invoice">
                     <div class="row">
-                        <div class="col-sm-6 mx-auto">
+                        <div class="col-10 mx-auto">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <p class="display-4">INVOICE</p>

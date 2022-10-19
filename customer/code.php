@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "dbcon.php";
+require "../dbcon.php";
 
 
 if (isset($_POST['delete_customer'])) {
@@ -58,6 +58,7 @@ if (isset($_POST['save_customer']))
     $query = "INSERT INTO customers (name,email,phone,town,city) VALUES('$name','$email','$phone','$town','$city')";
 
     $query_run = mysqli_query($con, $query);
+
     if ($query_run) {
         $_SESSION['message'] = "Customer Created Successfully";
         header("Location: index.php");
