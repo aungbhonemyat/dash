@@ -50,7 +50,7 @@ $query_runn = mysqli_query($con, $qquery);
 
                 <h1 class="h4  text-center">
                     <a class="navbar-brand h1" href="../dashboard.php">
-                        <img src="img/glass-brand.png" width="80px" alt=""></a>
+                        <img src="../img/glass-brand.png" width="80px" alt=""></a>
                     </a>
                 </h1>
                 <div class="list-group text-center text-lg-start ">
@@ -63,14 +63,14 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
-                            <a href="index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                            <a href="index.php" class="list-group-item p-5 active"> <i class="fas fa-users"></i>
                                 <span class="d-none d-lg-inline">Customers</span>
                                 <!-- <span class="d-none d-lg-inline badge bg-danger
         rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
-                            <a class=" list-group-item px-5 p-5 sidebar-link action active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
+                            <a class=" list-group-item px-5 p-5 sidebar-link " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
 
                                 <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
                             </a>

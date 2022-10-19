@@ -63,7 +63,7 @@ require 'dbcon.php';
                             </div>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+                            <a href="delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>

@@ -49,7 +49,7 @@ $query_runn = mysqli_query($con, $qquery);
 
                 <h1 class="h4  text-center">
                     <a class="navbar-brand h1" href="../dashboard.php">
-                        <img src="img/glass-brand.png" width="80px" alt=""></a>
+                        <img src="../img/glass-brand.png" width="80px" alt=""></a>
                     </a>
                 </h1>
                 <div class="list-group text-center text-lg-start ">
@@ -87,7 +87,7 @@ $query_runn = mysqli_query($con, $qquery);
                             </div>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+                            <a href="../delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>
