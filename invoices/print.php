@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
                                     <p class="display-4">INVOICE</p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p class="h1">Company Name
+                                    <p class="h1">Glass Business
                                     <p>
                                     <p class="text-muted">Address and Phone</p>
                                 </div>
@@ -117,7 +117,8 @@ if (isset($_GET['id'])) {
                                 echo "No Items";
                             }
                             ?>
-                            <div class="row">
+                            
+                            <div class="row p-3 mt-5">
                                 <div class="col-sm-6 offset-sm-6">
                                     <div class="row">
                                         <div class="col-sm-6">

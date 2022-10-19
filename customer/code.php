@@ -47,8 +47,6 @@ if (isset($_POST['update'])) {
 
 
 if (isset($_POST['save_customer']))
-// echo "dbsuccess";
-
 {
     $name = mysqli_real_escape_string($con, $_POST['name']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
@@ -57,7 +55,7 @@ if (isset($_POST['save_customer']))
     $city = mysqli_real_escape_string($con, $_POST['city']);
     // $receive=mysqli_real_escape_string($con,$_POST['receive']);
 
-    $query = "INSERT INTO customers(name,email,phone,town,city) VALUES('$name','$email','$phone','$town','$city')";
+    $query = "INSERT INTO customers (name,email,phone,town,city) VALUES('$name','$email','$phone','$town','$city')";
 
     $query_run = mysqli_query($con, $query);
     if ($query_run) {

@@ -268,7 +268,7 @@ require '../dbcon.php';
                                                                 </td>
                                                             </tr>
                                                         </table>
-                                                        <input type="hidden" name="products" id="items" />
+                                                        <input type="hidden" name="products" id="items"/>
                                                         <div class="row col-lg-4 text-end">
                                                             <div class="mb-3">
                                                                 <label>Discount</label>
@@ -288,9 +288,7 @@ require '../dbcon.php';
                                                             <div class="col-lg-3">
                                                                 <button type="submit" name="save_invoice" value="save_invoice" class="btn btn-primary">Create Invoice</button>
                                                             </div>
-                                                            <div class="col-lg-3">
-                                                                <a href="invo_data_print.php" class="btn btn-secondary">Print</a>
-                                                            </div>
+                                                            
                                                         </div>
                                                 </div>
                                                 </form>
