@@ -100,7 +100,7 @@ require '../dbcon.php';
 
                             <ul class="dropdown-menu dropdown-menu-end p-2">
                                 <li>
-                                    <a href="logout.php" class="dropdown-item">Logout</a>
+                                    <a href="../logout.php" class="dropdown-item">Logout</a>
                                 </li>
                             </ul>
                         </li>
@@ -198,8 +198,6 @@ require '../dbcon.php';
 
                                 <div class="container mt-5">
                                     <?php require('../message.php'); ?>
-
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="card text-black">
