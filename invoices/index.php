@@ -31,6 +31,8 @@ $query_runn = mysqli_query($con, $qquery);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="../img/glass-white.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/glass-white.png">
     <title>Invoices</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/all.min.css">
@@ -78,6 +80,11 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
+                            <a href="../invoices/index.php" class="list-group-item p-5 action active"> <i class="fas fa-users"></i>
+                                <span class="d-none d-lg-inline">Invoices</span>
+                            </a>
+                        </li>
+                        <!-- <li>
                             <a class=" list-group-item px-5 p-5 sidebar-link action active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
 
                                 <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
@@ -94,7 +101,7 @@ $query_runn = mysqli_query($con, $qquery);
                                     </a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="../delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
@@ -120,7 +127,7 @@ $query_runn = mysqli_query($con, $qquery);
             </nav>
 
             <main class="col-10 text-white bg-dark">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
                     <div class="flex-fill"></div>
                     <div class="navbar-nav">
                         <li class="nav-item p-2">
@@ -158,7 +165,7 @@ $query_runn = mysqli_query($con, $qquery);
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total Customers
                                     </span>
@@ -179,7 +186,7 @@ $query_runn = mysqli_query($con, $qquery);
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total invoices
                                     </span>
@@ -189,7 +196,7 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">50k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total cashed In
                                     </span>
@@ -199,7 +206,7 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">20k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Mobile Banking
                                     </span>
@@ -209,7 +216,7 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">1k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Receivables
                                     </span>
@@ -307,7 +314,7 @@ $query_runn = mysqli_query($con, $qquery);
                                         </table>
 
                                     </div>
-                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -362,7 +369,7 @@ $query_runn = mysqli_query($con, $qquery);
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -448,7 +455,7 @@ $query_runn = mysqli_query($con, $qquery);
     </footer>
     </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

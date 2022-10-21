@@ -16,6 +16,8 @@ if (isset($_GET['id'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" href="../img/glass-white.png">
+        <link rel="shortcut icon" type="image/x-icon" href="../img/glass-white.png">
         <title>Glass</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/all.min.css">
@@ -147,10 +149,12 @@ if (isset($_GET['id'])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-12">
+                            <button id="print" class="btn btn-warning me-5">Print</button>
+                        </div>
                     </div>
                 </section>
-                <div>
-                    <button id="print" class="btn btn-primary mt-5">Print</button>
+                
 
             <?php
             }

@@ -8,6 +8,8 @@ require '../dbcon.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="../img/glass-white.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/glass-white.png">
     <title>products</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/all.min.css">
@@ -44,7 +46,12 @@ rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
-                            <a class=" list-group-item px-5 p-5 sidebar-link action active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
+                            <a href="../invoices/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                                <span class="d-none d-lg-inline">Invoices</span>
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <a class=" list-group-item px-5 p-5 sidebar-link " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
 
                                 <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
                             </a>
@@ -60,7 +67,7 @@ rounded-pill float-end">20</span> -->
                                     </a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="../delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
@@ -72,7 +79,7 @@ rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
-                            <a href="index.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
+                            <a href="../products/index.php" class="list-group-item p-5 action active"> <i class="fab fa-product-hunt"></i>
                                 <span class="d-none d-lg-inline">Products</span>
                             </a>
                         </li>
@@ -86,7 +93,7 @@ rounded-pill float-end">20</span> -->
             </nav>
 
             <main class="col-10 text-white bg-dark">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
                     <div class="flex-fill"></div>
                     <div class="navbar-nav">
                         <li class="nav-item p-2">
@@ -124,7 +131,7 @@ rounded-pill float-end">20</span> -->
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total Customers
                                     </span>
@@ -145,7 +152,7 @@ rounded-pill float-end">20</span> -->
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total invoices
                                     </span>
@@ -155,7 +162,7 @@ rounded-pill float-end">20</span> -->
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">50k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total cashed In
                                     </span>
@@ -165,7 +172,7 @@ rounded-pill float-end">20</span> -->
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">20k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Mobile Banking
                                     </span>
@@ -175,7 +182,7 @@ rounded-pill float-end">20</span> -->
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">1k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Receivables
                                     </span>
@@ -210,22 +217,15 @@ rounded-pill float-end">20</span> -->
                     </div> -->
                     <div class="col">
 
-                        <h2 class="h6 text-white-50">DATA</h2>
-                        <div class="card mb-3" style="height:100%">
+                        <h1 class="h1 text-center text-white-50 p-5"> <span class="text-white">D</span>ata</h1>
+                        <div class="card mt-1" style="height:100%">
                             <div class="card-body">
                                 <div class="text-end">
                                     <h3 class="float-end text-black"> Add Products</h3>
                                 </div>
-                                <!-- <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-sort-amount-up"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-filter"></i> </button> -->
 
                                 <div class="container mt-5">
-                                    <?php require('../message.php'); ?>
+                                    <?php require('../message.php');?>
 
 
                                     <div class="row">
@@ -233,7 +233,7 @@ rounded-pill float-end">20</span> -->
                                             <div class="card text-black">
                                                 <div class="card-header">
                                                     <h4>Products Add
-                                                        <a href="products.php" class="btn btn-secondary float-end text-white ">Back</a>
+                                                        <a href="index.php" class="btn btn-secondary float-end text-white ">Back</a>
                                                     </h4>
                                                 </div>
                                                 <div class="card-body ">
@@ -269,7 +269,7 @@ rounded-pill float-end">20</span> -->
                         </div>
                     </div>
 
-                    <footer class="text-center py-4 text-muted"> &copy; Copyright 2020
+                    <footer class="text-center text-muted mt-5"> &copy; Copyright 2020
                     </footer>
                 </div>
         </div>

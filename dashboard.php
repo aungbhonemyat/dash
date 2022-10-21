@@ -10,9 +10,12 @@ require 'dbcon.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="apple-touch-icon" href="img/glass-white.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/glass-white.png">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="js/bootstrap.min.js" defer></script>
 
@@ -29,8 +32,8 @@ require 'dbcon.php';
                     </a>
                 </h1>
                 <div class="list-group text-center text-lg-start ">
-                    <span class="list-group-item disabled d-none d-lg-block">
-                        <small>CONTROLS</small> </span>
+                <span class="list-group-item disabled d-none d-lg-block">
+                    <small>CONTROLS</small> </span>
                     <ul class="nav-link nav">
                         <li>
                             <a href="dashboard.php" class="list-group-item p-5 action active"> <i class="fas fa-home"></i>
@@ -45,6 +48,11 @@ require 'dbcon.php';
                             </a>
                         </li>
                         <li>
+                            <a href="invoices/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                                <span class="d-none d-lg-inline">Invoices</span>
+                            </a>
+                        </li>
+                        <!-- <li>
                             <a class=" list-group-item px-5 p-5 sidebar-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
 
                                 <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
@@ -61,7 +69,7 @@ require 'dbcon.php';
                                     </a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
@@ -101,10 +109,11 @@ require 'dbcon.php';
                 </div> -->
             </nav>
 
-            <main class="col-10 text-white bg-dark">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <main class="col-10 text-white bg-black">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
                     <div class="flex-fill"></div>
                     <div class="navbar-nav">
+                    
                         <li class="nav-item p-2">
                             <h5 class="text-dark p-1">Admin</h5>
                         </li>
@@ -117,7 +126,6 @@ require 'dbcon.php';
                                 </li>
                             </ul>
                         </li>
-
                     </div>
                 </nav>
                 <div class="container-fluid mt-3 p-4">
@@ -147,7 +155,7 @@ require 'dbcon.php';
                                         }
                                         ?>
                                     </h3>
-                                    <span class="text-success">
+                                    <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total Customers
                                     </span>
@@ -168,7 +176,7 @@ require 'dbcon.php';
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total invoices
                                     </span>
@@ -178,7 +186,7 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">50k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total cashed In
                                     </span>
@@ -188,7 +196,7 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">20k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Mobile Banking
                                     </span>
@@ -198,7 +206,7 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">1k +</h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Receivables
                                     </span>
@@ -233,7 +241,7 @@ require 'dbcon.php';
                     </div> -->
                         <div class="col">
                             <h2 class="h6 text-white-50">DATA</h2>
-                            <div class="card mb-3" style="height: 280px">
+                            <div class="card mb-3" style="height:550px">
                                 <div class="card-body">
                                     <div class="text-end">
                                         <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
