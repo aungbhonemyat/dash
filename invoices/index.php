@@ -20,9 +20,8 @@ if (isset($_POST['updateStatus'])) {
 if (isset($_POST['deliver'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['deliver']);
     $cus_id = mysqli_real_escape_string($con, $_POST['cus_id']);
-    $deliverQuery = "INSERT INTO `delivery` (stat, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', '$cus_id')";
-    $insert = mysqli_query($con, $deliverQuery);
-    if (!$insert) echo mysqli_error($con);
+    $deliverQuery = "INSERT INTO delivery (stat, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', '$cus_id')";
+    mysqli_query($con, $deliverQuery);
 }
 
 $num_per_page = 9;
