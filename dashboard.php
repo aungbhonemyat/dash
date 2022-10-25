@@ -76,7 +76,7 @@ require 'dbcon.php';
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-reply"></i>
+                            <a href="retran/index.php" class="list-group-item p-5"> <i class="fas fa-reply"></i>
                                 <span class="d-none d-lg-inline">Re/Trans</span>
                             </a>
                         </li>
@@ -122,7 +122,7 @@ require 'dbcon.php';
 
                             <ul class="dropdown-menu dropdown-menu-end p-2">
                                 <li>
-                                    <a href="../logout.php" class="dropdown-item">Logout</a>
+                                    <a href="logout.php" class="dropdown-item">Logout</a>
                                 </li>
                             </ul>
                         </li>
@@ -241,7 +241,7 @@ require 'dbcon.php';
                     </div> -->
                         <div class="col">
                             <h2 class="h6 text-white-50">DATA</h2>
-                            <div class="card mb-3" style="height:550px">
+                            <div class="card mb-1" style="height:550px">
                                 <div class="card-body">
                                     <div class="text-end">
                                         <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>

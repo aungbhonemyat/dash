@@ -69,12 +69,12 @@ rounded-pill float-end">20</span> -->
                             </div>
                         </li> -->
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+                            <a href="../delivery/index" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-reply"></i>
+                            <a href="../retran/index.php" class="list-group-item p-5"> <i class="fas fa-reply"></i>
                                 <span class="d-none d-lg-inline">Re/Trans</span>
                             </a>
                         </li>
@@ -84,7 +84,7 @@ rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
+                            <a href="../cargo/index.php" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
                                 <span class="d-none d-lg-inline">Cargo</span>
                             </a>
                         </li>

@@ -77,7 +77,7 @@ require '../dbcon.php';
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-reply"></i>
+                            <a href="../retran/index.php" class="list-group-item p-5"> <i class="fas fa-reply"></i>
                                 <span class="d-none d-lg-inline">Re/Trans</span>
                             </a>
                         </li>
@@ -87,7 +87,7 @@ require '../dbcon.php';
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
+                            <a href="../cargo/index.php" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
                                 <span class="d-none d-lg-inline">Cargo</span>
                             </a>
                         </li>
