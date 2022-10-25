@@ -27,7 +27,9 @@ if (isset($_POST['deliver'])) {
 $num_per_page = 9;
 $start_from = ($page - 1) * 12;
 
-$qquery = "SELECT invoices.*,customers.name FROM invoices LEFT JOIN customers ON invoices.cus_id=customers.cus_id limit $start_from,$num_per_page";
+
+$qquery = "SELECT invoices.*,customers.name, EXISTS(SELECT * FROM delivery, invoices WHERE invoices.invoice_no = delivery.invoice_no) as delivery FROM invoices LEFT JOIN customers ON invoices.cus_id=customers.cus_id limit $start_from,$num_per_page";
+
 $query_runn = mysqli_query($con, $qquery);
 
 ?>
