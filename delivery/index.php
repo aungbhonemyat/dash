@@ -13,7 +13,7 @@ if (isset($_GET['page'])) {
 if (isset($_POST['updateStatus'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['id']);
     $status = mysqli_real_escape_string($con, $_POST['updateStatus']);
-    $updateStatusQuery = "UPDATE invoices SET status='$status' WHERE id='$invoiceId'";
+    $updateStatusQuery = "UPDATE delivery SET stat='$status' WHERE id='$invoiceId'";
     mysqli_query($con, $updateStatusQuery);
 }
 
@@ -218,8 +218,8 @@ $query_runn = mysqli_query($con, $qquery);
                                 <nav>
                                     <div class="nav nav-tabs p-3" id="nav-tab" role="tablist">
                                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">All</button>
-                                        <button class="nav-link text-danger" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">deliver</button>
-                                        <button class="nav-link text-success" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Cargo</button>
+                                        <button class="nav-link text-success" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">delivered</button>
+                                        <button class="nav-link text-primary" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Cargo</button>
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
@@ -229,11 +229,8 @@ $query_runn = mysqli_query($con, $qquery);
                     <thead>
                         <tr>
                             <th>No</th>
-                            <!-- <th>Date</th> -->
                             <th>Invoice No</th>
                             <th>Customer Name</th>
-                            <!-- <th>Total Amount</th> -->
-                            <!-- <th>Discount</th> -->
                             <th>paid/un</th>
                             <th>status</th>
                             <th>Action</th>
@@ -247,19 +244,15 @@ $query_runn = mysqli_query($con, $qquery);
                         if (mysqli_num_rows($query_runn) > 0) {
                             foreach ($relt as $data) {
                                 //eho
-                                if ($data['stat'] === 'UNPAID') $disabled = 'UNPAID';
-                                if ($data['stat'] === 'PAID') $disabled = 'PAID';
+                                if ($data['stat'] === 'Cargo') $disabled = 'Cargo';
+                                if ($data['stat'] === 'Delivered') $disabled = 'Delivered';
                         ?>
                                 <tr>
                                     <td><?= $data['id']; ?></td>
-                                    <!-- <td><?= $data['date']; ?></td> -->
                                     <td><?= $data['invoice_no']; ?></td>
                                     <td><?= $data['name']; ?></td>
-                                    <!-- <td><?= $data['amount']; ?></td> -->
-                                    <!-- <td><?= $data['disc']; ?></td> -->
                                     <td><?= $data['status']?></td>
                                     <td><?= $data['stat']; ?></td>
-                                    <!-- <td><?= $data['name']?></td> -->
 
 
                                     <td>
@@ -267,12 +260,12 @@ $query_runn = mysqli_query($con, $qquery);
                                         <form method="POST" class="d-inline">
                                             <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
                                             <input type="hidden" name="updateStatus" value="Cargo" readonly />
-                                            <!-- <input type="submit" value="Cargo" <?php if ($disabled === "Cargo") echo " disabled "; ?> class="btn btn-primary btn-sm" /> -->
+                                            <input type="submit" value="Cargo" <?php if ($disabled === "Cargo") echo " disabled "; ?> class="btn btn-primary btn-sm" />
                                         </form>
                                         <form method="POST" class="d-inline">
                                             <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
                                             <input type="hidden" name="updateStatus" value="Delivered" readonly />
-                                            <!-- <input type="submit" value="Delivered" <?php if ($disabled === "Delivered") echo " disabled "; ?> class="btn btn-success btn-sm" /> -->
+                                            <input type="submit" value="Delivered" <?php if ($disabled === "Delivered") echo " disabled "; ?> class="btn btn-success btn-sm" />
                                         </form>
                                         <form action="update.php" method="POST" class="d-inline">
                                             <button type="submit" name="delete_invoice" value="<?= $data['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
@@ -298,8 +291,112 @@ $query_runn = mysqli_query($con, $qquery);
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade text-black" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">world</div>
-            <div class="tab-pane fade text-black" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> hello</div>
+            <div class="tab-pane fade text-black" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Invoice No</th>
+                                                <th>Customer Name</th>
+                                                <th>paid/un</th>
+                                                <th>status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // $query = "SELECT * FROM customers";
+                                            // $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_runn) > 0) {
+                                                foreach ($relt as $data) {
+                                                    //eho
+                                                    if ($data['stat'] === 'Delivered'){
+                                            ?>
+                                                    <tr>
+                                                        <td><?= $data['id']; ?></td>
+                                                        <td><?= $data['invoice_no']; ?></td>
+                                                        <td><?= $data['name']; ?></td>
+                                                        <td><?= $data['status']?></td>
+                                                        <td><?= $data['stat']; ?></td>
+
+
+                                        <td>
+                                            <form method="POST" class="d-inline">
+                                                <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
+                                                <input type="hidden" name="updateStatus" value="Cargo" readonly />
+                                                <input type="submit" value="Cargo" class="btn btn-primary btn-sm" />
+                                            </form>
+                                            <form action="update.php" method="POST" class="d-inline">
+                                                <button type="submit" name="delete_invoice" value="<?= $data['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                        <?php
+                                }
+                            }
+                        }
+                         else {
+                            echo "<h5> No Record Found </h5>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade text-black" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table class="table">                         
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Invoice No</th>
+                                                <th>Customer Name</th>
+                                                <th>paid/un</th>
+                                                <th>status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // $query = "SELECT * FROM customers";
+                                            // $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_runn) > 0) {
+                                                foreach ($relt as $data) {
+                                                    //eho
+                                                    if ($data['stat'] === 'Cargo'){
+                                            ?>
+                                                    <tr>
+                                                        <td><?= $data['id']; ?></td>
+                                                        <td><?= $data['invoice_no']; ?></td>
+                                                        <td><?= $data['name']; ?></td>
+                                                        <td><?= $data['status']?></td>
+                                                        <td><?= $data['stat']; ?></td>
+
+
+                                        <td>
+                                            <form method="POST" class="d-inline">
+                                                <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
+                                                <input type="hidden" name="updateStatus" value="Delivered" readonly />
+                                                <input type="submit" value="Delivered" class="btn btn-success btn-sm" />
+                                            </form>
+                                            <form action="update.php" method="POST" class="d-inline">
+                                                <button type="submit" name="delete_invoice" value="<?= $data['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                        <?php
+                                }
+                            }
+                        }
+                         else {
+                            echo "<h5> No Record Found </h5>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
                                 </div>
 
                             </div>
