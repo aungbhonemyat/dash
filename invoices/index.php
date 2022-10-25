@@ -17,6 +17,13 @@ if (isset($_POST['updateStatus'])) {
     mysqli_query($con, $updateStatusQuery);
 }
 
+if (isset($_POST['deliver'])) {
+    $invoiceId = mysqli_real_escape_string($con, $_POST['deliver']);
+    $cus_id = mysqli_real_escape_string($con, $_POST['cus_id']);
+    $deliverQuery = "INSERT INTO Delivery (status, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', '$cus_id')";
+    mysqli_query($con, $deliverQuery);
+}
+
 $num_per_page = 9;
 $start_from = ($page - 1) * 12;
 
@@ -299,6 +306,12 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     <button type="submit" name="delete_invoice" value="<?= $invoices['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
                                                                 </form>
                                                                 <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
+
+                                                                <form method="POST" class="d-inline">
+                                                                    <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                    <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
+                                                                    <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                                                </form>
                                                                 <!-- <form action="print.php" method="POST" class="d-inline">
                                                             <button type="submit" name="print_inv" value="<?= $invoices['id']; ?>" class="btn btn-warning btn-sm">Print</button>
                                                         </form> -->
@@ -314,7 +327,7 @@ $query_runn = mysqli_query($con, $qquery);
                                         </table>
 
                                     </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -356,6 +369,11 @@ $query_runn = mysqli_query($con, $qquery);
                                                                         <button type="submit" name="delete_invoice" value="<?= $invoices['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
                                                                     </form>
                                                                     <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
+                                                                    <form method="POST" class="d-inline">
+                                                                        <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                        <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
+                                                                        <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                                                    </form>
                                                                 </td>
                                                             </tr>
 
@@ -369,7 +387,7 @@ $query_runn = mysqli_query($con, $qquery);
                                             </tbody>
                                         </table>
                                     </div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -411,6 +429,11 @@ $query_runn = mysqli_query($con, $qquery);
                                                                         <button type="submit" name="delete_invoice" value="<?= $invoices['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
                                                                     </form>
                                                                     <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
+                                                                    <form method="POST" class="d-inline">
+                                                                        <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                        <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
+                                                                        <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                                                    </form>
                                                                 </td>
                                                             </tr>
 
