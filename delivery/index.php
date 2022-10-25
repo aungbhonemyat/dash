@@ -17,11 +17,16 @@ if (isset($_POST['updateStatus'])) {
     mysqli_query($con, $updateStatusQuery);
 }
 
+$deliveryQuery = "SELECT delivery.*, customers.name as name, invoices.status as 'status' FROM delivery,customers,invoices WHERE delivery.cus_id=customers.cus_id AND delivery.invoice_no = invoices.invoice_no";
+$relt = mysqli_query($con,$deliveryQuery);
+
 $num_per_page = 9;
 $start_from = ($page - 1) * 12;
 
 $qquery = "SELECT invoices.*,customers.name FROM invoices LEFT JOIN customers ON invoices.cus_id=customers.cus_id limit $start_from,$num_per_page";
 $query_runn = mysqli_query($con, $qquery);
+
+
 
 ?>
 <!DOCTYPE html>
@@ -219,7 +224,80 @@ $query_runn = mysqli_query($con, $qquery);
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
                                    
-            <div class="tab-pane fade show active text-black" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">Hay</div>
+            <div class="tab-pane fade show active text-black" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <!-- <th>Date</th> -->
+                            <th>Invoice No</th>
+                            <th>Customer Name</th>
+                            <!-- <th>Total Amount</th> -->
+                            <!-- <th>Discount</th> -->
+                            <th>paid/un</th>
+                            <th>status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // $query = "SELECT * FROM customers";
+                        // $query_run = mysqli_query($con, $query);
+
+                        if (mysqli_num_rows($query_runn) > 0) {
+                            foreach ($relt as $data) {
+                                //eho
+                                if ($data['stat'] === 'UNPAID') $disabled = 'UNPAID';
+                                if ($data['stat'] === 'PAID') $disabled = 'PAID';
+                        ?>
+                                <tr>
+                                    <td><?= $data['id']; ?></td>
+                                    <!-- <td><?= $data['date']; ?></td> -->
+                                    <td><?= $data['invoice_no']; ?></td>
+                                    <td><?= $data['name']; ?></td>
+                                    <!-- <td><?= $data['amount']; ?></td> -->
+                                    <!-- <td><?= $data['disc']; ?></td> -->
+                                    <td><?= $data['status']?></td>
+                                    <td><?= $data['stat']; ?></td>
+                                    <!-- <td><?= $data['name']?></td> -->
+
+
+                                    <td>
+                                        <!-- copy this one for all tabs nor -->
+                                        <form method="POST" class="d-inline">
+                                            <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
+                                            <input type="hidden" name="updateStatus" value="Cargo" readonly />
+                                            <!-- <input type="submit" value="Cargo" <?php if ($disabled === "Cargo") echo " disabled "; ?> class="btn btn-primary btn-sm" /> -->
+                                        </form>
+                                        <form method="POST" class="d-inline">
+                                            <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
+                                            <input type="hidden" name="updateStatus" value="Delivered" readonly />
+                                            <!-- <input type="submit" value="Delivered" <?php if ($disabled === "Delivered") echo " disabled "; ?> class="btn btn-success btn-sm" /> -->
+                                        </form>
+                                        <form action="update.php" method="POST" class="d-inline">
+                                            <button type="submit" name="delete_invoice" value="<?= $data['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                        <!-- <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a> -->
+
+                                        <!-- <form method="POST" class="d-inline">
+                                            <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                            <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
+                                            <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                        </form> -->
+                                        <!-- <form action="print.php" method="POST" class="d-inline">
+                                    <button type="submit" name="print_inv" value="<?= $invoices['id']; ?>" class="btn btn-warning btn-sm">Print</button>
+                                </form> -->
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        } else {
+                            echo "<h5> No Record Found </h5>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="tab-pane fade text-black" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">world</div>
             <div class="tab-pane fade text-black" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> hello</div>
                                 </div>

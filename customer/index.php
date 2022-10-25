@@ -12,7 +12,6 @@ $num_per_page = 10;
 $start_from = ($page - 1) * 10;
 
 $qquery = "SELECT customers.cus_id,customers.name,customers.phone, SUM(invoices.amount) as receive, SUM(invoices.disc) as disc FROM customers LEFT JOIN invoices ON customers.cus_id = invoices.cus_id GROUP BY customers.cus_id LIMIT $start_from,$num_per_page";
-
 $query_runn = mysqli_query($con, $qquery);
 
 ?>
