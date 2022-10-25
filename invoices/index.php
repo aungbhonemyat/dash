@@ -312,7 +312,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                 <form method="POST" class="d-inline">
                                                                     <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                     <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
-                                                                    <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                                                    <input type="submit" value="Deliver" <?php if ($invoices['delivery'] == 1) echo "disabled"; ?> class="btn btn-primary btn-sm" />
                                                                 </form>
                                                                 <!-- <form action="print.php" method="POST" class="d-inline">
                                                             <button type="submit" name="print_inv" value="<?= $invoices['id']; ?>" class="btn btn-warning btn-sm">Print</button>
@@ -374,7 +374,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     <form method="POST" class="d-inline">
                                                                         <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                         <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
-                                                                        <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                                                        <input type="submit" value="Deliver" <?php if ($invoices['delivery'] == 1) echo "disabled"; ?> class="btn btn-primary btn-sm" />
                                                                     </form>
                                                                 </td>
                                                             </tr>
@@ -434,7 +434,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     <form method="POST" class="d-inline">
                                                                         <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                         <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
-                                                                        <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
+                                                                        <input type="submit" value="Deliver" <?php if ($invoices['delivery'] == 1) echo "disabled"; ?> class="btn btn-primary btn-sm" />
                                                                     </form>
                                                                 </td>
                                                             </tr>
