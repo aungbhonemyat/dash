@@ -266,7 +266,9 @@ require '../dbcon.php';
                                                                     </select>
                                                                 </td>
                                                                 <td><input type="number" name="qty[]" require=""></td>
-                                                                <td><input type="number" readonly name="rate[]" require=""><?php echo $row['rate']; ?></td>
+                                                                <td><input type="number" readonly name="rate[]" require="">
+                                                                <?php //echo $row['rate']; ?>
+                                                            </td>
                                                                 <td><input type="text" name="amount[]" readonly require=""></td>
                                                                 <td>
                                                                     <input class="btn btn-warning" type="button" name="add" id="add" value="Add">

@@ -9,6 +9,22 @@ if (isset($_GET['page'])) {
 } else {
     $page = 1;
 }
+if (isset($_POST['delete_cargo'])) {
+    $id = mysqli_real_escape_string($con, $_POST['delete_cargo']);
+
+    $query = "DELETE FROM delivery WHERE id=$id ";
+    $query_run = mysqli_query($con, $query);
+
+    if ($query_run) {
+        $_SESSION['message'] = "Cargo list Deleted Successfully";
+        header("Location: index.php");
+        exit(0);
+    } else {
+        $_SESSION['message'] = "Cargo list Not Deleted";
+        header("Location: index.php");
+        exit(0);
+    }
+}
 
 if (isset($_POST['updateStatus'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['id']);
@@ -83,12 +99,12 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
-                            <a href="../invoices/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                            <a href="../invoices/index.php" class="list-group-item p-5"><i class="fa-solid fa-file-invoice-dollar"></i>
                                 <span class="d-none d-lg-inline">Invoices</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/index.php" class="list-group-item p-5 action active"> <i class="fas fa-truck"></i>
+                            <a href="/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>
@@ -103,7 +119,7 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
-                            <a href="../cargo/index.php" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
+                            <a href="../cargo/index.php" class="list-group-item p-5 action active"> <i class="fas fa-cart-arrow-down"></i>
                                 <span class="d-none d-lg-inline">Cargo</span>
                             </a>
                         </li>
@@ -181,9 +197,20 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM products";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Total cashed In
+                                        Total Products
                                     </span>
                                 </div>
                             </div>
@@ -191,9 +218,19 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM transfer";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?> </h3><span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Mobile Banking
+                                        Total Retransfer Lists
                                     </span>
                                 </div>
                             </div>
@@ -201,9 +238,20 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM delivery";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Receivables
+                                        Delivery Lists
                                     </span>
                                 </div>
                             </div>
@@ -212,8 +260,8 @@ $query_runn = mysqli_query($con, $qquery);
 
                     <div class="col" id="list">
 
-                        <h2 class="h6 text-white-50">DATA</h2>
-                        <div class="card mb-3" style="height:700px">
+                        <h2 class="h2  text-center text-white-50 p-3">Cargo</h2>
+                        <div class="card mb-3" style="height:100%x">
                             <div class="card-body">
                             <table class="table">
                                         <thead>
@@ -247,7 +295,7 @@ $query_runn = mysqli_query($con, $qquery);
 
                                                         <td>
                                                             <!-- copy this one for all tabs nor -->
-                                                            <form method="POST" class="d-inline">
+                                                            <!-- <form method="POST" class="d-inline">
                                                                 <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
                                                                 <input type="hidden" name="updateStatus" value="Cargo" readonly />
                                                                 <input type="submit" value="Cargo" <?php if ($disabled === "Cargo") echo " disabled "; ?> class="btn btn-primary btn-sm" />
@@ -256,9 +304,9 @@ $query_runn = mysqli_query($con, $qquery);
                                                                 <input type="hidden" name="id" value="<?= $data['id'] ?>" readonly />
                                                                 <input type="hidden" name="updateStatus" value="Delivered" readonly />
                                                                 <input type="submit" value="Delivered" <?php if ($disabled === "Delivered") echo " disabled "; ?> class="btn btn-success btn-sm" />
-                                                            </form>
-                                                            <form action="update.php" method="POST" class="d-inline">
-                                                                <button type="submit" name="delete_invoice" value="<?= $data['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
+                                                            </form> -->
+                                                            <form action="index.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_cargo" value="<?= $data['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
                                                             </form>
                                                             <!-- <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a> -->
 

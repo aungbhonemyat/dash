@@ -17,10 +17,19 @@ if (isset($_POST['updateStatus'])) {
     mysqli_query($con, $updateStatusQuery);
 }
 
+if (isset($_POST['deliver'])) {
+    $invoiceId = mysqli_real_escape_string($con, $_POST['deliver']);
+    $cus_id = mysqli_real_escape_string($con, $_POST['cus_id']);
+    $deliverQuery = "INSERT INTO delivery (stat, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', '$cus_id')";
+    mysqli_query($con, $deliverQuery);
+}
+
 $num_per_page = 9;
 $start_from = ($page - 1) * 12;
 
-$qquery = "SELECT invoices.*,customers.name FROM invoices LEFT JOIN customers ON invoices.cus_id=customers.cus_id limit $start_from,$num_per_page";
+
+$qquery = $qquery = "SELECT * FROM transfer limit $start_from,$num_per_page";
+
 $query_runn = mysqli_query($con, $qquery);
 
 ?>
@@ -230,23 +239,72 @@ $query_runn = mysqli_query($con, $qquery);
                         <h2 class="h6 text-white-50">DATA</h2>
                         <div class="card mb-3" style="height:700px">
                             <div class="card-body">
+                                <div class="text-end">
+                                    <a href="create.php" class="btn btn-primary float-end">Add Retran</a>
+                                    <!-- <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-sort-amount-up"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-filter"></i> </button> -->
+                                </div>
                                 <nav>
                                     <div class="nav nav-tabs p-3" id="nav-tab" role="tablist">
                                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">All</button>
-                                        <button class="nav-link text-danger" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">delete</button>
-                                        <!-- <button class="nav-link text-success" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"></button> -->
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                   
-            <div class="tab-pane fade show active text-black" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">Hay</div>
-            <div class="tab-pane fade text-black" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">world</div>
-            <!-- <div class="tab-pane fade text-black" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> hello</div> -->
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Customer</th>
+                                                    <th>Invoice No</th>
+                                                    <th>Date</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // $query = "SELECT * FROM customers";
+                                                // $query_run = mysqli_query($con, $query);
+
+                                                if (mysqli_num_rows($query_runn) > 0) {
+                                                    foreach ($query_runn as $retran) {
+                                                        //eho
+                                                        // if ($invoices['status'] === 'UNPAID') $disabled = 'UNPAID';
+                                                        // if ($invoices['status'] === 'PAID') $disabled = 'PAID';
+                                                ?>
+                                                        <tr>
+                                                            <td><?= $retran['id']; ?></td>
+                                                            <td><?= $retran['name']; ?></td>
+                                                            <td><?= $retran['invoice_no']; ?></td>
+                                                            <td><?= $retran['date']; ?></td>
+                                                            <td><?= $retran['amount']; ?></td>
+                                                            <td>
+                                                                <form action="update.php" method="POST" class="d-inline">
+                                                                    <button type="submit" name="delete_retran" value="<?= $retran['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "<h5> No Record Found </h5>";
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
                                 </div>
 
                             </div>
 
-                            <!-- <div class="contiainer text-end p-5">
+                            <div class="contiainer text-end p-5">
                                 <?php
                                 $pr_query = "SELECT * FROM invoices";
                                 $pr_result = mysqli_query($con, $pr_query);
@@ -258,7 +316,7 @@ $query_runn = mysqli_query($con, $qquery);
                                     echo "<a href='index.php?page=" . $i . "' class='btn pages'>$i</a>";
                                 }
                                 ?>
-                            </div> -->
+                            </div>
                         </div>
 
 
