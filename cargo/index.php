@@ -104,7 +104,7 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
-                            <a href="/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+                            <a href="../delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>

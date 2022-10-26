@@ -46,7 +46,7 @@ rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
-                            <a href="../invoices/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                            <a href="../invoices/index.php" class="list-group-item p-5"> <i class="fa-solid fa-file-invoice-dollar"></i>
                                 <span class="d-none d-lg-inline">Invoices</span>
                             </a>
                         </li>
@@ -143,11 +143,11 @@ rounded-pill float-end">20</span> -->
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                         <?php
-                                        $dash_product_query = "SELECT * FROM invoices";
-                                        $dash_product_query_run = mysqli_query($con, $dash_product_query);
+                                        $dash_invoice_query = "SELECT * FROM invoices";
+                                        $dash_invoice_query_run = mysqli_query($con, $dash_invoice_query);
 
-                                        if ($product_total = mysqli_num_rows($dash_product_query_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $product_total . '</h2>';
+                                        if ($invoice_total = mysqli_num_rows($dash_invoice_query_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $invoice_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
@@ -162,9 +162,20 @@ rounded-pill float-end">20</span> -->
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM products";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Total cashed In
+                                        Total Products
                                     </span>
                                 </div>
                             </div>
@@ -172,9 +183,19 @@ rounded-pill float-end">20</span> -->
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM transfer";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?> </h3><span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Mobile Banking
+                                        Total Retransfer Lists
                                     </span>
                                 </div>
                             </div>
@@ -182,39 +203,25 @@ rounded-pill float-end">20</span> -->
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM delivery";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Receivables
+                                        Delivery Lists
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="row mt-4 flex-column flex-lg-row"> -->
-                    <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col">
 
                         <h1 class="h1 text-center text-white-50 p-5"> <span class="text-white">D</span>ata</h1>

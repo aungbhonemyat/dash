@@ -69,7 +69,7 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
-                            <a href="../invoices/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                            <a href="../invoices/index.php" class="list-group-item p-5"><i class="fa-solid fa-file-invoice-dollar"></i>
                                 <span class="d-none d-lg-inline">Invoices</span>
                             </a>
                         </li>
@@ -166,17 +166,16 @@ $query_runn = mysqli_query($con, $qquery);
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                         <?php
-                                        $dash_product_query = "SELECT * FROM invoices";
-                                        $dash_product_query_run = mysqli_query($con, $dash_product_query);
+                                        $dash_invoice_query = "SELECT * FROM invoices";
+                                        $dash_invoice_query_run = mysqli_query($con, $dash_invoice_query);
 
-                                        if ($product_total = mysqli_num_rows($dash_product_query_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $product_total . '</h2>';
+                                        if ($invoice_total = mysqli_num_rows($dash_invoice_query_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $invoice_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3>
-                                    <span class="text-danger">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total invoices
                                     </span>
@@ -186,9 +185,20 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM products";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Total cashed In
+                                        Total Products
                                     </span>
                                 </div>
                             </div>
@@ -196,9 +206,19 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM transfer";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?> </h3><span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Mobile Banking
+                                        Total Retransfer Lists
                                     </span>
                                 </div>
                             </div>
@@ -206,9 +226,20 @@ $query_runn = mysqli_query($con, $qquery);
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-danger">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM delivery";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Receivables
+                                        Delivery Lists
                                     </span>
                                 </div>
                             </div>
@@ -217,7 +248,7 @@ $query_runn = mysqli_query($con, $qquery);
 
                     <div class="col" id="list">
 
-                        <h2 class="h6 text-white-50">DATA</h2>
+                        <h2 class="h2 p-3 text-center text-white-50">Products</h2>
                         <div class="card mb-3" style="height:700px">
                             <div class="card-body">
                                 <div class="text-end">
