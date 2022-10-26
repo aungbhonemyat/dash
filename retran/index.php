@@ -338,7 +338,7 @@ $query_runn = mysqli_query($con, $qquery);
 
                             <div class="contiainer text-end p-5">
                                 <?php
-                                $pr_query = "SELECT * FROM invoices";
+                                $pr_query = "SELECT * FROM transfer";
                                 $pr_result = mysqli_query($con, $pr_query);
                                 $totalrecord = mysqli_num_rows($pr_result);
                                 $totalpages = ceil($totalrecord / $num_per_page);
