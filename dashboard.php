@@ -95,21 +95,6 @@ require 'dbcon.php';
                         </li>
                     </ul>
                 </div>
-
-                <!-- <div class="list-group mt-3 text-center text-lg-start">
-                    <span class="list-group-item disabled d-none d-lg-block">
-                        <small>ACTIONS</small></span>
-
-                    <a href="#" class="list-group-item"><i class="fas fa-home"></i>
-                        <span class="d-none d-lg-inline">New Users</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-edit"></i>
-                        <span class="d-none d-lg-inline">Update data</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-calendar-alt"></i>
-                        <span class="d-none d-lg-inline">New Events</span>
-                    </a>
-                </div> -->
             </nav>
 
             <main class="col-10 text-white bg-black">
@@ -132,15 +117,6 @@ require 'dbcon.php';
                     </div>
                 </nav>
                 <div class="container-fluid mt-3 p-4">
-                    <!-- <div class="row mb-3">
-                        <div class="col">
-                            <div class="alert alert-info">
-                                <i class="fas fa-download me-2"></i>
-                                A new version of admin dashboard is released. <a href="#">Download Now!</a>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="row flex-column flex-lg-row text-dark">
                         <h2 class="h6 text-white-50">QUICK STATS</h2>
                         <div class="col">
