@@ -104,7 +104,11 @@ $query_runn = mysqli_query($con, $qquery);
                             </a>
                         </li>
                         <li>
+<<<<<<< Updated upstream
                             <a href="../delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+=======
+                            <a href="/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+>>>>>>> Stashed changes
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>
