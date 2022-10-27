@@ -18,10 +18,13 @@ require 'dbcon.php';
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="js/bootstrap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
 </head>
 
 <body>
+    
+
     <div class="container-fluid mt-2">
         <div class="row g-0" style="box-shadow:  0 2px 2px 2px rgb(104, 108, 109);">
             <nav class="col-2 bg-light">
@@ -275,55 +278,44 @@ require 'dbcon.php';
                             <h2 class="h2 text-white-50 text-center p-3">Dashboard</h2>
                             <div class="card mb-1" style="height:550px">
                                 <div class="card-body">
-                                    <div class="text-end">
-                                        <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-sort-amount-up"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-filter"></i> </button>
-                                    </div>
-                                    <table class="table">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Age Group</th>
-                                            <th>Data</th>
-                                            <th>Progress</th>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>20-30</td>
-                                            <td>19%</td>
-                                            <td>
-                                                <i class="fas fa-chart-pie"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>30-40</td>
-                                            <td>40%</td>
-                                            <td>
-                                                <i class="fas fa-chart-bar"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>40-50</td>
-                                            <td>20%</td>
-                                            <td>
-                                                <i class="fas fa-chart-line"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>>50</td>
-                                            <td>11%</td>
-                                            <td>
-                                                <i class="fas fa-chart-pie"></i>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                <canvas id="chart" width="400" height="200"></canvas>
+                                    <script>
+                                        const ctx = document.getElementById('chart').getContext('2d');
+                                        const myChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                                datasets: [{
+                                                    label: '# of Votes',
+                                                    data: [12, 10, 3, 5, 2, 3],
+                                                    backgroundColor: [
+                                                        'rgba(255, 99, 132, 0.2)',
+                                                        'rgba(54, 162, 235, 0.2)',
+                                                        'rgba(255, 206, 86, 0.2)',
+                                                        'rgba(75, 192, 192, 0.2)',
+                                                        'rgba(153, 102, 255, 0.2)',
+                                                        'rgba(255, 159, 64, 0.2)'
+                                                    ],
+                                                    borderColor: [
+                                                        'rgba(255, 99, 132, 1)',
+                                                        'rgba(54, 162, 235, 1)',
+                                                        'rgba(255, 206, 86, 1)',
+                                                        'rgba(75, 192, 192, 1)',
+                                                        'rgba(153, 102, 255, 1)',
+                                                        'rgba(255, 159, 64, 1)'
+                                                    ],
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </div>
