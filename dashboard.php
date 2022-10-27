@@ -52,24 +52,6 @@ require 'dbcon.php';
                                 <span class="d-none d-lg-inline">Invoices</span>
                             </a>
                         </li>
-                        <!-- <li>
-                            <a class=" list-group-item px-5 p-5 sidebar-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
-
-                                <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
-                            </a>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    <a href="invoices/index.php" class="list-group-item">
-                                        Main
-                                    </a>
-                                </div>
-                                <div class="card card-body">
-                                    <a href="#" class="list-group-item">
-                                        Draft
-                                    </a>
-                                </div>
-                            </div>
-                        </li> -->
                         <li>
                             <a href="delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
@@ -92,21 +74,6 @@ require 'dbcon.php';
                         </li>
                     </ul>
                 </div>
-
-                <!-- <div class="list-group mt-3 text-center text-lg-start">
-                    <span class="list-group-item disabled d-none d-lg-block">
-                        <small>ACTIONS</small></span>
-
-                    <a href="#" class="list-group-item"><i class="fas fa-home"></i>
-                        <span class="d-none d-lg-inline">New Users</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-edit"></i>
-                        <span class="d-none d-lg-inline">Update data</span>
-                    </a>
-                    <a href="#" class="list-group-item"><i class="fas fa-calendar-alt"></i>
-                        <span class="d-none d-lg-inline">New Events</span>
-                    </a>
-                </div> -->
             </nav>
 
             <main class="col-10 text-white bg-black">
