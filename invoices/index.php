@@ -13,14 +13,15 @@ if (isset($_GET['page'])) {
 if (isset($_POST['updateStatus'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['id']);
     $status = mysqli_real_escape_string($con, $_POST['updateStatus']);
-    $updateStatusQuery = "UPDATE invoices SET status='$status' WHERE id='$invoiceId'";
+    $updateStatusQuery = "UPDATE `invoices` SET `status`='$status' WHERE `id`=$invoiceId";
     mysqli_query($con, $updateStatusQuery);
 }
 
 if (isset($_POST['deliver'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['deliver']);
     $cus_id = mysqli_real_escape_string($con, $_POST['cus_id']);
-    $deliverQuery = "INSERT INTO Delivery (status, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', $cus_id)";
+    $deliverQuery = "INSERT INTO Delivery (`status`, `invoice_no`, `cus_id`) VALUES ('Cargo', '$invoiceId', $cus_id)";
+    echo $deliverQuery;
     mysqli_query($con, $deliverQuery);
 }
 
@@ -322,7 +323,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                 <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
 
                                                                 <form method="POST" class="d-inline">
-                                                                    <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                    <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                     <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
                                                                     <input type="submit" value="Deliver" class="btn btn-primary btn-sm" <?php if ($invoices['delivery'] == 1) echo "disabled"; ?> />
                                                                 </form>
@@ -384,7 +385,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     </form>
                                                                     <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
                                                                     <form method="POST" class="d-inline">
-                                                                        <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                        <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                         <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
                                                                         <input type="submit" value="Deliver" class="btn btn-primary btn-sm" <?php if ($invoices['delivery'] == 1) echo "disabled"; ?> />
                                                                     </form>
@@ -444,7 +445,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     </form>
                                                                     <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
                                                                     <form method="POST" class="d-inline">
-                                                                        <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                        <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                         <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
                                                                         <input type="submit" name="Deliver" class="btn btn-primary btn-sm" <?php if ($invoices['delivery'] == 1) echo "disabled"; ?> />
                                                                     </form>
