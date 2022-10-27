@@ -20,7 +20,7 @@ if (isset($_POST['updateStatus'])) {
 if (isset($_POST['deliver'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['deliver']);
     $cus_id = mysqli_real_escape_string($con, $_POST['cus_id']);
-    $deliverQuery = "INSERT INTO Delivery (status, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', '$cus_id')";
+    $deliverQuery = "INSERT INTO Delivery (status, invoice_no, cus_id) VALUES ('Cargo', '$invoiceId', $cus_id)";
     mysqli_query($con, $deliverQuery);
 }
 
@@ -186,7 +186,7 @@ $query_runn = mysqli_query($con, $qquery);
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h3 class="card-title h2">
-                                    <?php
+                                        <?php
                                         $dash_query = "SELECT * FROM products";
                                         $dash_run = mysqli_query($con, $dash_query);
 
@@ -207,7 +207,7 @@ $query_runn = mysqli_query($con, $qquery);
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h3 class="card-title h2">
-                                    <?php
+                                        <?php
                                         $dash_query = "SELECT * FROM transfer";
                                         $dash_run = mysqli_query($con, $dash_query);
 
@@ -227,7 +227,7 @@ $query_runn = mysqli_query($con, $qquery);
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h3 class="card-title h2">
-                                    <?php
+                                        <?php
                                         $dash_query = "SELECT * FROM delivery";
                                         $dash_run = mysqli_query($con, $dash_query);
 
@@ -322,7 +322,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                 <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
 
                                                                 <form method="POST" class="d-inline">
-                                                                    <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                    <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                     <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
                                                                     <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
                                                                 </form>
@@ -384,7 +384,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     </form>
                                                                     <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
                                                                     <form method="POST" class="d-inline">
-                                                                        <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                        <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                         <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
                                                                         <input type="submit" value="Deliver" class="btn btn-primary btn-sm" />
                                                                     </form>
@@ -444,7 +444,7 @@ $query_runn = mysqli_query($con, $qquery);
                                                                     </form>
                                                                     <a href="print.php?id=<?= $invoices['id'] ?>" class="btn btn-warning btn-sm">Print</a>
                                                                     <form method="POST" class="d-inline">
-                                                                        <input type="hidden" name="deliver" value="<?= $invoices['id'] ?>" readonly />
+                                                                        <input type="hidden" name="deliver" value="<?= $invoices['invoice_no'] ?>" readonly />
                                                                         <input type="hidden" name="cus_id" value="<?= $invoices['cus_id'] ?>" readonly />
                                                                         <input type="submit" value="eliver" class="btn btn-primary btn-sm" />
                                                                     </form>
