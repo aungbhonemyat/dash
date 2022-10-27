@@ -273,7 +273,7 @@ require 'dbcon.php';
                     </div> -->
                         <div class="col">
                             <h2 class="h2 text-white-50 text-center p-3">Dashboard</h2>
-                            <div class="card mb-1" style="height:550px">
+                            <div class="card mb-3" style="height:550px">
                                 <div class="card-body">
                                     <div class="text-end">
                                         <button class="btn btn-smbtn-outline-secondary"> <i class="fas fa-search"></i>

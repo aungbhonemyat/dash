@@ -311,7 +311,7 @@ require '../dbcon.php';
                                                         <div class="row col-lg-4 text-end">
                                                             <div class="mb-3">
                                                                 <label>Discount</label>
-                                                                <input type="text" name="disc" id="disc" class="form-control">
+                                                                <input type="text" name="disc" id="disc" class="form-control" require>
                                                             </div>
 
                                                             <div class="col-lg-6 mb-3">
