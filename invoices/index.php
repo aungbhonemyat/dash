@@ -20,7 +20,7 @@ if (isset($_POST['updateStatus'])) {
 if (isset($_POST['deliver'])) {
     $invoiceId = mysqli_real_escape_string($con, $_POST['deliver']);
     $cus_id = mysqli_real_escape_string($con, $_POST['cus_id']);
-    $deliverQuery = "INSERT INTO `delivery` (`status`, `invoice_no`, `cus_id`) VALUES ('Cargo', '$invoiceId', $cus_id)";
+    $deliverQuery = "INSERT INTO `delivery` (`stat`, `invoice_no`, `cus_id`) VALUES ('Cargo', '$invoiceId', $cus_id)";
     echo $deliverQuery;
     mysqli_query($con, $deliverQuery);
 }
