@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require '../dbcon.php';
 //save
 ?>
 <!DOCTYPE html>
@@ -9,12 +9,14 @@ require 'dbcon.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="../img/glass-white.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/glass-white.png">
     <title>Invoices-create</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js" defer></script>
+    <script src="../js/bootstrap.min.js" defer></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
 
 
 </head>
@@ -26,8 +28,8 @@ require 'dbcon.php';
             <nav class="col-2 bg-light">
 
                 <h1 class="h4  text-center">
-                    <a class="navbar-brand h1" href="dashboard.php">
-                        <img src="img/glass-brand.png" width="80px" alt=""></a>
+                    <a class="navbar-brand h1" href="../dashboard.php">
+                        <img src="../img/glass-brand.png" width="80px" alt=""></a>
                     </a>
                 </h1>
                 <div class="list-group text-center text-lg-start ">
@@ -35,25 +37,30 @@ require 'dbcon.php';
                         <small>CONTROLS</small> </span>
                     <ul class="nav-link nav">
                         <li>
-                            <a href="dashboard.php" class="list-group-item p-5"> <i class="fas fa-home"></i>
+                            <a href="../dashboard.php" class="list-group-item p-5"> <i class="fas fa-home"></i>
                                 <span class="d-none d-lg-inline">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="customer.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
+                            <a href="../customer/index.php" class="list-group-item p-5"> <i class="fas fa-users"></i>
                                 <span class="d-none d-lg-inline">Customers</span>
                                 <!-- <span class="d-none d-lg-inline badge bg-danger
                         rounded-pill float-end">20</span> -->
                             </a>
                         </li>
                         <li>
+                            <a href="../invoices/index.php" class="list-group-item p-5 action active"> <i class="fas fa-users"></i>
+                                <span class="d-none d-lg-inline">Invoices</span>
+                            </a>
+                        </li>
+                        <!-- <li>
                             <a class=" list-group-item px-5 p-5 sidebar-link action active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-line"></i>
 
                                 <span class="d-none d-lg-inline">Invoices</span><i class="fas fa-sort-down p-2"></i>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
-                                    <a href="invoices.php" class="list-group-item">
+                                    <a href="index.php" class="list-group-item">
                                         Main
                                     </a>
                                 </div>
@@ -63,24 +70,24 @@ require 'dbcon.php';
                                     </a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-truck"></i>
+                            <a href="../delivery/index.php" class="list-group-item p-5"> <i class="fas fa-truck"></i>
                                 <span class="d-none d-lg-inline">Delivery</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-reply"></i>
+                            <a href="../retran/index.php" class="list-group-item p-5"> <i class="fas fa-reply"></i>
                                 <span class="d-none d-lg-inline">Re/Trans</span>
                             </a>
                         </li>
                         <li>
-                            <a href="products.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
+                            <a href="../products/index.php" class="list-group-item p-5"> <i class="fab fa-product-hunt"></i>
                                 <span class="d-none d-lg-inline">Products</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
+                            <a href="../cargo/index.php" class="list-group-item p-5"> <i class="fas fa-cart-arrow-down"></i>
                                 <span class="d-none d-lg-inline">Cargo</span>
                             </a>
                         </li>
@@ -89,7 +96,7 @@ require 'dbcon.php';
             </nav>
 
             <main class="col-10 text-white bg-dark">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
                     <div class="flex-fill"></div>
                     <div class="navbar-nav">
                         <li class="nav-item p-2">
@@ -100,7 +107,7 @@ require 'dbcon.php';
 
                             <ul class="dropdown-menu dropdown-menu-end p-2">
                                 <li>
-                                    <a href="logout.php" class="dropdown-item">Logout</a>
+                                    <a href="../logout.php" class="dropdown-item">Logout</a>
                                 </li>
                             </ul>
                         </li>
@@ -108,7 +115,7 @@ require 'dbcon.php';
                     </div>
                 </nav>
                 <div class="container-fluid mt-4 p-4">
-                    <?php include('message.php'); ?>
+                    <?php require('../message.php'); ?>
 
 
                     <div class="row flex-column flex-lg-row text-dark">
@@ -127,7 +134,7 @@ require 'dbcon.php';
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total Customers
                                     </span>
@@ -139,16 +146,16 @@ require 'dbcon.php';
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                         <?php
-                                        $dash_product_query = "SELECT * FROM invoices";
-                                        $dash_product_query_run = mysqli_query($con, $dash_product_query);
+                                        $dash_invoice_query = "SELECT * FROM invoices";
+                                        $dash_invoice_query_run = mysqli_query($con, $dash_invoice_query);
 
-                                        if ($product_total = mysqli_num_rows($dash_product_query_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $product_total . '</h2>';
+                                        if ($invoice_total = mysqli_num_rows($dash_invoice_query_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $invoice_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
                                         ?>
-                                    </h3> <span class="text-success">
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
                                         Total invoices
                                     </span>
@@ -158,9 +165,20 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">50k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM products";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Total cashed In
+                                        Total Products
                                     </span>
                                 </div>
                             </div>
@@ -168,9 +186,19 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">20k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM transfer";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?> </h3><span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Mobile Banking
+                                        Total Retransfer Lists
                                     </span>
                                 </div>
                             </div>
@@ -178,9 +206,20 @@ require 'dbcon.php';
                         <div class="col">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title h2">1k +</h3> <span class="text-success">
+                                    <h3 class="card-title h2">
+                                    <?php
+                                        $dash_query = "SELECT * FROM delivery";
+                                        $dash_run = mysqli_query($con, $dash_query);
+
+                                        if ($total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        } else {
+                                            echo '<h3 class="mb-0"> NO data </h3>';
+                                        }
+                                        ?>
+                                    </h3> <span class="text-danger">
                                         <i class="fas fa-chart-line"></i>
-                                        Receivables
+                                        Delivery Lists
                                     </span>
                                 </div>
                             </div>
@@ -189,7 +228,7 @@ require 'dbcon.php';
 
                     <div class="col">
 
-                        <h2 class="h6 text-white-50">DATA</h2>
+                        <h2 class="h2 p-3 text-center text-white-50">Invoice Create</h2>
                         <div class="card mb-3" style="height:100%">
                             <div class="card-body">
                                 <div class="text-end">
@@ -197,25 +236,22 @@ require 'dbcon.php';
                                 </div>
 
                                 <div class="container mt-5">
-                                    <?php include('message.php'); ?>
-
-
+                                    <?php require('../message.php'); ?>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="card text-black">
                                                 <div class="card-header">
                                                     <h4>invoice Create
-                                                        <a href="invoices.php" class="btn btn-secondary float-end text-white ">Back</a>
+                                                        <a href="index.php" class="btn btn-secondary float-end text-white ">Back</a>
                                                     </h4>
                                                 </div>
                                                 <div class="card-body ">
-                                                    <form action="code_invo.php" method="POST" id="create-invoice-form">
+                                                    <form action="update.php" method="POST" id="create-invoice-form">
                                                         <div class="mb-3">
                                                             <label>Customer Name</label>
                                                             <select name="cus_id" id="cus_id" class="form-control" required>
                                                                 <option value="1">Choose Customer</option>
                                                                 <?php
-                                                                require "dbcon.php";
 
                                                                 $result = mysqli_query($con, "SELECT * FROM customers");
                                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -223,7 +259,6 @@ require 'dbcon.php';
                                                                     <option value="<?php echo $row['cus_id']; ?>">
                                                                         <?php echo $row['name']; ?>
                                                                     </option>
-
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
@@ -263,18 +298,20 @@ require 'dbcon.php';
                                                                     </select>
                                                                 </td>
                                                                 <td><input type="number" name="qty[]" require=""></td>
-                                                                <td><input type="number" readonly name="rate[]" require=""><?php echo $row['rate']; ?></td>
+                                                                <td><input type="number" readonly name="rate[]" require="">
+                                                                <?php //echo $row['rate']; ?>
+                                                            </td>
                                                                 <td><input type="text" name="amount[]" readonly require=""></td>
                                                                 <td>
                                                                     <input class="btn btn-warning" type="button" name="add" id="add" value="Add">
                                                                 </td>
                                                             </tr>
                                                         </table>
-                                                        <input type="hidden" name="products" id="items" />
+                                                        <input type="hidden" name="products" id="items"/>
                                                         <div class="row col-lg-4 text-end">
                                                             <div class="mb-3">
                                                                 <label>Discount</label>
-                                                                <input type="text" name="disc" id="disc" class="form-control">
+                                                                <input type="text" name="disc" id="disc" class="form-control" require>
                                                             </div>
 
                                                             <div class="col-lg-6 mb-3">
@@ -288,15 +325,12 @@ require 'dbcon.php';
                                                         </div>
                                                         <div class="row col-lg-12">
                                                             <div class="col-lg-3">
-                                                                <button type="submit" name="save_invoice" class="btn btn-primary">Create Invoice</button>
+                                                                <button type="submit" name="save_invoice" value="save_invoice" class="btn btn-primary">Create Invoice</button>
                                                             </div>
-                                                            <div class="col-lg-3">
-                                                                <a href="invo_data_print.php" class="btn btn-secondary">Print</a>
-                                                            </div>
+                                                            
                                                         </div>
-                                                        </div>
-                                                    </form>   
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -304,11 +338,12 @@ require 'dbcon.php';
                             </div>
                         </div>
                     </div>
-
-                    <footer class="text-center py-4 text-muted"> &copy; Copyright 2020
-                    </footer>
                 </div>
+
+                <footer class="text-center py-4 text-muted"> &copy; Copyright 2020
+                </footer>
         </div>
+    </div>
 
 
 
@@ -370,11 +405,17 @@ require 'dbcon.php';
 
             // add item to item list
             const items = document.querySelector("#items");
-            if(!items.value) {
-                items.value = JSON.stringify([parseInt(selectedProduct.value)])
+            if (!items.value) {
+                items.value = JSON.stringify([{
+                    id: parseInt(selectedProduct.value),
+                    qty: parseInt(qtyInput.value)
+                }])
             } else {
                 const itemsArray = JSON.parse(items.value);
-                itemsArray.push(parseInt(selectedProduct.value));
+                itemsArray.push({
+                    id: parseInt(selectedProduct.value),
+                    qty: parseInt(qtyInput.value)
+                });
                 items.value = JSON.stringify(itemsArray);
             }
             //save lite
@@ -383,14 +424,14 @@ require 'dbcon.php';
 
             const subtotal = document.querySelector("#subtotal");
             const total = document.querySelector("#total");
-            
+
             const tempSubTotal = !!subtotal.value ? parseInt(subtotal.value) + parseInt(amountInput.value) : amountInput.value;
 
             subtotal.value = tempSubTotal;
 
             //d narr lay mharr nay tr, ae hr ko 1 chat line por shar pee lode kyi
-            total.value = (!!document.querySelector("#disc").value) ? 
-                parseInt(subtotal.value) - parseInt(document.querySelector("#disc").value) : 
+            total.value = (!!document.querySelector("#disc").value) ?
+                parseInt(subtotal.value) - parseInt(document.querySelector("#disc").value) :
                 tempSubTotal;
 
             // save reload, ya p lol, s and r
