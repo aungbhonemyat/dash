@@ -263,7 +263,7 @@ require 'dbcon.php';
                                             data: {
                                                 labels: ['Customer', 'invoices', 'products', 'transfer list', 'delivery'],
                                                 datasets: [{
-                                                    label: '# of Count',
+                                                    label: 'Count',
                                                     data: [<?= $customer_total?>, <?=$invoices_total?>,<?=$products_total?>,<?= $transfer_total ?>,<?= $delivery_total?>],
                                                     backgroundColor: [
                                                         'rgba(255, 99, 132, 0.2)',
