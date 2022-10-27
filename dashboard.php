@@ -170,11 +170,11 @@ require 'dbcon.php';
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                         <?php
-                                        $dash_query = "SELECT * FROM invoices";
-                                        $dash_run = mysqli_query($con, $dash_query);
+                                        $invoices_query = "SELECT * FROM invoices";
+                                        $dash_run = mysqli_query($con, $invoices_query);
 
-                                        if ($total = mysqli_num_rows($dash_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        if ($invoices_total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $invoices_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
@@ -191,11 +191,11 @@ require 'dbcon.php';
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                     <?php
-                                        $dash_query = "SELECT * FROM products";
-                                        $dash_run = mysqli_query($con, $dash_query);
+                                        $products_query = "SELECT * FROM products";
+                                        $dash_run = mysqli_query($con, $products_query);
 
-                                        if ($total = mysqli_num_rows($dash_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        if ($products_total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $products_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
@@ -212,11 +212,11 @@ require 'dbcon.php';
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                     <?php
-                                        $dash_query = "SELECT * FROM transfer";
-                                        $dash_run = mysqli_query($con, $dash_query);
+                                        $transfer_query = "SELECT * FROM transfer";
+                                        $dash_run = mysqli_query($con, $transfer_query);
 
-                                        if ($total = mysqli_num_rows($dash_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        if ($transfer_total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $transfer_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
@@ -232,11 +232,11 @@ require 'dbcon.php';
                                 <div class="card-body">
                                     <h3 class="card-title h2">
                                     <?php
-                                        $dash_query = "SELECT * FROM delivery";
-                                        $dash_run = mysqli_query($con, $dash_query);
+                                        $delivery_query = "SELECT * FROM delivery";
+                                        $dash_run = mysqli_query($con, $delivery_query);
 
-                                        if ($total = mysqli_num_rows($dash_run)) {
-                                            echo '<h2 class="mb-0 text-center">' . $total . '</h2>';
+                                        if ($delivery_total = mysqli_num_rows($dash_run)) {
+                                            echo '<h2 class="mb-0 text-center">' . $delivery_total . '</h2>';
                                         } else {
                                             echo '<h3 class="mb-0"> NO data </h3>';
                                         }
@@ -251,29 +251,6 @@ require 'dbcon.php';
                     </div>
 
                     <div class="row mt-4 flex-column flex-lg-row">
-                        <!-- <div class="col">
-                        <h2 class="h6 text-white-50">LOCATION</h2>
-                        <div class="card mb-3" style="height: 280px">
-                            <div class="card-body">
-                                <small class="text-muted">Regional</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-success w-25"></div>
-                                </div>
-                                <small class="text-muted">Global</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-primary w-75"></div>
-                                </div>
-                                <small class="text-muted">Local</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-warning w-50"></div>
-                                </div>
-                                <small class="text-muted">Internal</small>
-                                <div class="progress mb-4 mt-2" style="height: 5px">
-                                    <div class="progress-bar bg-danger w-25"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                         <div class="col">
                             <h2 class="h2 text-white-50 text-center p-3">Dashboard</h2>
                             <div class="card mb-1" style="height:550px">
@@ -284,10 +261,10 @@ require 'dbcon.php';
                                         const myChart = new Chart(ctx, {
                                             type: 'bar',
                                             data: {
-                                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                                labels: ['Customer', 'invoices', 'products', 'transfer list', 'delivery'],
                                                 datasets: [{
-                                                    label: '# of Votes',
-                                                    data: [12, 10, 3, 5, 2, 3],
+                                                    label: '# of Count',
+                                                    data: [<?= $customer_total?>, <?=$invoices_total?>,<?=$products_total?>,<?= $transfer_total ?>,<?= $delivery_total?>],
                                                     backgroundColor: [
                                                         'rgba(255, 99, 132, 0.2)',
                                                         'rgba(54, 162, 235, 0.2)',
